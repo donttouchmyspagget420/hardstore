@@ -1,0 +1,121 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Notebook Gamer Nova 15",
+      "description": "Notebook con procesador Ryzen 7, 16 GB de RAM y SSD de 512 GB. Ideal para desarrollo, diseño y gaming.",
+      "price": 1499.99,
+      "category": "Computación",
+      "stock": 8,
+      "image": "/images/notebook.svg"
+    },
+    {
+      "id": 2,
+      "name": "Mouse Inalámbrico Pulse",
+      "description": "Mouse ergonómico con sensor de 16000 DPI, conexión inalámbrica 2.4 GHz y hasta 70 horas de autonomía.",
+      "price": 39.99,
+      "category": "Periféricos",
+      "stock": 35,
+      "image": "/images/mouse.svg"
+    },
+    {
+      "id": 4,
+      "name": "Monitor UltraWide 29\"",
+      "description": "Panel IPS de 29 pulgadas con resolución 2560x1080, 100 Hz y conectividad HDMI más DisplayPort.",
+      "price": 349.99,
+      "category": "Monitores",
+      "stock": 10,
+      "image": "/images/monitor.svg"
+    },
+    {
+      "id": 5,
+      "name": "Auriculares Studio Pro",
+      "description": "Auriculares over-ear con cancelación activa de ruido, micrófono integrado y sonido de alta fidelidad.",
+      "price": 129.99,
+      "category": "Audio",
+      "stock": 18,
+      "image": "/images/headset.svg"
+    },
+    {
+      "id": 6,
+      "name": "Webcam Full HD Stream",
+      "description": "Cámara 1080p a 60 fps con enfoque automático, corrección de luz y micrófono estéreo para streaming.",
+      "price": 59.99,
+      "category": "Periféricos",
+      "stock": 0,
+      "image": "/images/webcam.svg"
+    },
+    {
+      "id": 7,
+      "name": "SSD NVMe 1TB Velocity",
+      "description": "Unidad de estado sólido NVMe PCIe 4.0 con velocidades de lectura de hasta 5000 MB/s.",
+      "price": 109.99,
+      "category": "Almacenamiento",
+      "stock": 22,
+      "image": "/images/ssd.svg"
+    },
+    {
+      "id": 8,
+      "name": "Memoria RAM 16GB DDR5",
+      "description": "Módulo de memoria DDR5 a 5600 MHz con disipador de aluminio y perfil bajo.",
+      "price": 74.99,
+      "category": "Componentes",
+      "stock": 30,
+      "image": "/images/ram.svg"
+    },
+    {
+      "id": 9,
+      "name": "Placa de Video RTX 4060",
+      "description": "GPU con 8 GB GDDR6, ray tracing y DLSS 3. Perfecta para jugar en 1080p a alto rendimiento.",
+      "price": 399.99,
+      "category": "Componentes",
+      "stock": 3,
+      "image": "/images/gpu.svg"
+    },
+    {
+      "id": 10,
+      "name": "Fuente 750W Gold",
+      "description": "Fuente modular 80 Plus Gold con protección contra sobrecargas y ventilador de bajo ruido.",
+      "price": 94.99,
+      "category": "Componentes",
+      "stock": 14,
+      "image": "/images/psu.svg"
+    },
+    {
+      "id": 11,
+      "name": "Motherboard B650 WiFi",
+      "description": "Placa base AM5 con soporte DDR5, WiFi 6, Bluetooth 5.2 y dos ranuras M.2 NVMe.",
+      "price": 189.99,
+      "category": "Componentes",
+      "stock": 7,
+      "image": "/images/motherboard.svg"
+    },
+    {
+      "id": 12,
+      "name": "Micrófono USB Cast",
+      "description": "Micrófono condensador USB con patrón cardioide, soporte de escritorio y salida para auriculares.",
+      "price": 79.99,
+      "category": "Audio",
+      "stock": 12,
+      "image": "/images/microphone.svg"
+    },
+    {
+      "id": 13,
+      "name": "Silla Gamer Ergo X",
+      "description": "Silla ergonómica con apoyabrazos ajustables, reclinación de 155 grados y soporte lumbar.",
+      "price": 249.99,
+      "category": "Accesorios",
+      "stock": 6,
+      "image": "/images/chair.svg"
+    },
+    {
+      "id": 14,
+      "name": "Hub USB-C 7 en 1",
+      "description": "Adaptador con HDMI 4K, lector SD, tres puertos USB 3.0 y carga rápida de 100 W.",
+      "price": 29.99,
+      "category": "Accesorios",
+      "stock": 40,
+      "image": "/images/hub.svg"
+    }
+  ]
+}
