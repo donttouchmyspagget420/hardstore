@@ -1,7 +1,7 @@
 function SearchBar({ value, onChange, placeholder = 'Buscar productos...', id = 'product-search' }) {
   return (
     <div className="input-group search-group">
-      <span className="input-group-text bg-white" aria-hidden="true">
+      <span className="input-group-text" aria-hidden="true">
         <i className="bi bi-search" />
       </span>
       <input

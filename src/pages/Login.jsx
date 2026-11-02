@@ -16,7 +16,10 @@ function Login() {
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
-  const requestedPath = location.state?.from?.pathname
+  const from = location.state?.from
+  const requestedPath = from?.pathname
+    ? `${from.pathname}${from.search || ''}`
+    : null
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -39,7 +42,7 @@ function Login() {
 
     showToast(`Bienvenido/a, ${result.user.name}.`, 'success', 'Sesión iniciada')
     const destination =
-      result.user.role === 'admin' ? requestedPath || '/admin' : '/productos'
+      requestedPath || (result.user.role === 'admin' ? '/admin' : '/perfil')
     navigate(destination, { replace: true })
   }
 
@@ -76,11 +79,20 @@ function Login() {
                   La sesión se conserva en LocalStorage (solo datos básicos, sin contraseña).
                 </p>
                 <div className="d-flex flex-wrap justify-content-center gap-2">
-                  <Link className="btn btn-brand" to={isAdmin ? '/admin' : '/productos'}>
-                    {isAdmin ? 'Ir al panel' : 'Ir al catálogo'}
+                  <Link className="btn btn-brand" to="/perfil">
+                    <i className="bi bi-person-circle me-1" aria-hidden="true" />
+                    Mi perfil
                   </Link>
-                  <Link className="btn btn-outline-dark" to="/">
-                    Inicio
+                  {isAdmin && (
+                    <Link className="btn btn-outline-dark" to="/admin">
+                      Ir al panel
+                    </Link>
+                  )}
+                  <Link className="btn btn-outline-dark" to="/productos">
+                    Catálogo
+                  </Link>
+                  <Link className="btn btn-outline-dark" to="/carrito">
+                    Carrito
                   </Link>
                   <button type="button" className="btn btn-outline-danger" onClick={handleLogout}>
                     Cerrar sesión
@@ -111,16 +123,17 @@ function Login() {
                     </span>
                   </Link>
 
-                  <h1 className="h2 text-white mb-3">Accedé al panel de administración</h1>
+                  <h1 className="h2 text-white mb-3">Ingresá a tu cuenta</h1>
                   <p className="text-white-50 small mb-4">
-                    Iniciá sesión para gestionar productos. Los usuarios con rol de administrador
-                    pueden crear, editar y eliminar; los usuarios comunes solo consultan el catálogo.
+                    Iniciá sesión para comprar, seguir tus pedidos, dejar opiniones y, si sos
+                    administrador, gestionar todo el catálogo.
                   </p>
 
                   <ul className="list-unstyled login-features mb-4">
-                    <li><i className="bi bi-check-circle-fill" aria-hidden="true" /> CRUD completo con JSON Server</li>
-                    <li><i className="bi bi-check-circle-fill" aria-hidden="true" /> Rutas protegidas por rol</li>
-                    <li><i className="bi bi-check-circle-fill" aria-hidden="true" /> Sesión persistente en LocalStorage</li>
+                    <li><i className="bi bi-check-circle-fill" aria-hidden="true" /> Carrito y checkout con pagos simulados</li>
+                    <li><i className="bi bi-check-circle-fill" aria-hidden="true" /> Historial de pedidos y dashboard personal</li>
+                    <li><i className="bi bi-check-circle-fill" aria-hidden="true" /> Opiniones con likes y dislikes</li>
+                    <li><i className="bi bi-check-circle-fill" aria-hidden="true" /> CRUD completo y rutas protegidas por rol</li>
                   </ul>
 
                   <div className="small text-white-50">
@@ -141,7 +154,7 @@ function Login() {
                   </div>
                 </div>
 
-                <div className="col-lg-7 bg-white">
+                <div className="col-lg-7">
                   <div className="p-4 p-lg-5">
                     <span className="section-kicker">Acceso</span>
                     <h2 className="h3 mb-1">Iniciar sesión</h2>

@@ -1,13 +1,34 @@
 import { Link } from 'react-router-dom'
 import { DEFAULT_IMAGE } from '../data/categories'
+import { useCart } from '../context/cart-context'
+import { useToast } from '../context/toast-context'
 import { formatCurrency, getStockState } from '../utils/format'
 
 function ProductCard({ product, showAdminActions = false, onEdit, onDelete }) {
   const stock = getStockState(product.stock)
+  const { addItem } = useCart()
+  const { showToast } = useToast()
+  const isOutOfStock = Number(product.stock) <= 0
 
   const handleImageError = (event) => {
     event.currentTarget.onerror = null
     event.currentTarget.src = DEFAULT_IMAGE
+  }
+
+  const handleAddToCart = () => {
+    const result = addItem(product, 1)
+
+    if (result.ok) {
+      showToast(`${product.name} se agregó al carrito.`, 'success', 'Producto agregado')
+      return
+    }
+
+    if (result.reason === 'out-of-stock') {
+      showToast('Este producto no tiene stock disponible.', 'danger', 'Sin stock')
+      return
+    }
+
+    showToast('Ya tenés todas las unidades disponibles en tu carrito.', 'warning', 'Stock máximo')
   }
 
   return (
@@ -21,9 +42,16 @@ function ProductCard({ product, showAdminActions = false, onEdit, onDelete }) {
           onError={handleImageError}
         />
         <span className="badge category-badge">{product.category}</span>
+        {product.featured && (
+          <span className="badge featured-badge">
+            <i className="bi bi-star-fill me-1" aria-hidden="true" />
+            Destacado
+          </span>
+        )}
       </Link>
 
       <div className="card-body d-flex flex-column">
+        {product.brand && <span className="product-brand">{product.brand}</span>}
         <h3 className="h6 card-title mb-1">
           <Link className="product-card-title" to={`/productos/${product.id}`}>
             {product.name}
@@ -38,11 +66,21 @@ function ProductCard({ product, showAdminActions = false, onEdit, onDelete }) {
           <span className={`badge ${stock.badge} stock-badge`}>{stock.label}</span>
         </div>
 
-        <div className="d-flex gap-2 mt-3">
-          <Link className="btn btn-dark btn-sm flex-grow-1" to={`/productos/${product.id}`}>
+        <div className="d-flex flex-wrap gap-2 mt-3">
+          <Link className="btn btn-outline-dark btn-sm flex-grow-1" to={`/productos/${product.id}`}>
             Ver detalle
             <i className="bi bi-arrow-right ms-1" aria-hidden="true" />
           </Link>
+          <button
+            type="button"
+            className="btn btn-brand btn-sm"
+            onClick={handleAddToCart}
+            disabled={isOutOfStock}
+            aria-label={`Agregar ${product.name} al carrito`}
+            title={isOutOfStock ? 'Sin stock' : 'Agregar al carrito'}
+          >
+            <i className="bi bi-cart-plus" aria-hidden="true" />
+          </button>
 
           {showAdminActions && (
             <>

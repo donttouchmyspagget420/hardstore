@@ -10,6 +10,21 @@
     />
     <meta name="theme-color" content="#0f172a" />
     <title>HardStore | Gestor de Productos</title>
+    <script>
+      try {
+        const stored = localStorage.getItem('hardstore_theme')
+        const theme =
+          stored === 'light' || stored === 'dark'
+            ? stored
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light'
+        document.documentElement.setAttribute('data-bs-theme', theme)
+        document.documentElement.style.colorScheme = theme
+      } catch {
+        // Si LocalStorage no está disponible se mantiene el tema claro por defecto.
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

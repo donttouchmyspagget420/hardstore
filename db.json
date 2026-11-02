@@ -3,119 +3,921 @@
     {
       "id": 1,
       "name": "Notebook Gamer Nova 15",
+      "brand": "NovaTech",
+      "sku": "HS-NB-001",
       "description": "Notebook con procesador Ryzen 7, 16 GB de RAM y SSD de 512 GB. Ideal para desarrollo, diseño y gaming.",
+      "longDescription": "La Nova 15 combina un chasis de aluminio liviano con hardware de alto rendimiento para trabajar y jugar sin compromisos. Su sistema de refrigeración de doble ventilador mantiene temperaturas estables incluso en sesiones prolongadas.\n\nLa pantalla QHD de 165 Hz ofrece colores precisos y una respuesta fluida, mientras que el teclado retroiluminado y el lector de huellas agilizan el uso diario. Incluye Windows 11 y una licencia de un año de soporte técnico.",
       "price": 1499.99,
       "category": "Computación",
       "stock": 8,
-      "image": "/images/notebook.svg"
+      "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
+      "featured": true,
+      "warranty": "24 meses",
+      "highlights": [
+        "Procesador AMD Ryzen 7 de 8 núcleos",
+        "Pantalla QHD de 15,6 pulgadas y 165 Hz",
+        "SSD NVMe de 512 GB ampliable",
+        "Teclado retroiluminado y lector de huellas",
+        "Hasta 8 horas de autonomía"
+      ],
+      "specs": {
+        "Procesador": "AMD Ryzen 7 7840HS",
+        "Memoria": "16 GB DDR5 5600 MHz",
+        "Almacenamiento": "SSD NVMe 512 GB",
+        "Pantalla": "15,6\" QHD 165 Hz",
+        "Gráficos": "NVIDIA RTX 4060 8 GB",
+        "Conectividad": "WiFi 6E, Bluetooth 5.3, HDMI 2.1",
+        "Peso": "1,95 kg"
+      }
     },
     {
       "id": 2,
       "name": "Mouse Inalámbrico Pulse",
+      "brand": "Pulse",
+      "sku": "HS-PE-002",
       "description": "Mouse ergonómico con sensor de 16000 DPI, conexión inalámbrica 2.4 GHz y hasta 70 horas de autonomía.",
+      "longDescription": "El Pulse está diseñado para acompañar jornadas largas de trabajo o gaming. Su forma ergonómica y sus deslizadores de PTFE ofrecen un movimiento preciso y cómodo sobre cualquier superficie.\n\nEl sensor óptico de 16000 DPI se puede ajustar desde la aplicación Pulse Control, y la conexión inalámbrica de baja latencia permite alternar entre dos dispositivos con un botón.",
       "price": 39.99,
       "category": "Periféricos",
       "stock": 35,
-      "image": "/images/mouse.svg"
+      "image": "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=1200&q=80",
+      "featured": false,
+      "warranty": "12 meses",
+      "highlights": [
+        "Sensor óptico de hasta 16000 DPI",
+        "Conexión inalámbrica 2.4 GHz de baja latencia",
+        "Hasta 70 horas de uso con una carga",
+        "Seis botones programables",
+        "Compatible con Windows, macOS y Linux"
+      ],
+      "specs": {
+        "Sensor": "Óptico PAW3395",
+        "Resolución": "100 a 16000 DPI",
+        "Conectividad": "USB-C y receptor 2.4 GHz",
+        "Batería": "700 mAh, hasta 70 horas",
+        "Botones": "6 programables",
+        "Peso": "68 g"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Teclado Mecánico K68 RGB",
+      "brand": "KeyForge",
+      "sku": "HS-PE-003",
+      "description": "Teclado compacto 65% con switches lineales, iluminación RGB personalizable y estructura de aluminio.",
+      "longDescription": "El K68 reduce el espacio que ocupa en el escritorio sin resignar funciones: conserva las flechas y las teclas de navegación en un formato 65%. Su estructura de aluminio y la doble inyección de las teclas le dan una sensación sólida y duradera.\n\nLos switches lineales prelubricados ofrecen pulsaciones suaves y silenciosas. La iluminación RGB se configura por tecla y se guarda en la memoria interna del teclado.",
+      "price": 89.5,
+      "category": "Periféricos",
+      "stock": 4,
+      "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1200&q=80",
+      "featured": true,
+      "warranty": "18 meses",
+      "highlights": [
+        "Formato compacto 65%",
+        "Switches lineales prelubricados",
+        "Estructura de aluminio y teclas PBT",
+        "Iluminación RGB por tecla",
+        "Conexión USB-C desmontable"
+      ],
+      "specs": {
+        "Formato": "65% (68 teclas)",
+        "Switches": "Lineales, 45 g de actuación",
+        "Teclas": "PBT doble inyección",
+        "Iluminación": "RGB por tecla",
+        "Conexión": "USB-C extraíble",
+        "Peso": "720 g"
+      }
     },
     {
       "id": 4,
       "name": "Monitor UltraWide 29\"",
+      "brand": "VisionPro",
+      "sku": "HS-MO-004",
       "description": "Panel IPS de 29 pulgadas con resolución 2560x1080, 100 Hz y conectividad HDMI más DisplayPort.",
+      "longDescription": "El formato 21:9 del UltraWide amplía el espacio de trabajo y permite mantener varias ventanas abiertas sin cambiar de monitor. El panel IPS mantiene colores uniformes y ángulos de visión amplios.\n\nLa base permite regular la altura y la inclinación, y el modo de lectura reduce la fatiga visual. Es una opción versátil para oficina, edición y entretenimiento.",
       "price": 349.99,
       "category": "Monitores",
       "stock": 10,
-      "image": "/images/monitor.svg"
+      "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1200&q=80",
+      "featured": true,
+      "warranty": "36 meses",
+      "highlights": [
+        "Resolución UltraWide 2560x1080",
+        "Panel IPS con 100 Hz",
+        "Compatible con HDR10",
+        "Base ajustable en altura e inclinación",
+        "Modos de lectura y juego"
+      ],
+      "specs": {
+        "Tamaño": "29 pulgadas",
+        "Resolución": "2560 x 1080 (21:9)",
+        "Panel": "IPS, 100 Hz",
+        "Brillo": "300 nits",
+        "Conectividad": "HDMI 2.0, DisplayPort 1.4, jack 3,5 mm",
+        "Ajustes": "Altura, inclinación y VESA 100x100"
+      }
     },
     {
       "id": 5,
       "name": "Auriculares Studio Pro",
+      "brand": "AudioLab",
+      "sku": "HS-AU-005",
       "description": "Auriculares over-ear con cancelación activa de ruido, micrófono integrado y sonido de alta fidelidad.",
+      "longDescription": "Studio Pro está pensado para quienes necesitan concentración y calidad de audio. La cancelación activa híbrida reduce el ruido ambiente y se puede desactivar para escuchar lo que pasa alrededor.\n\nLos drivers de 40 mm ofrecen graves definidos y agudos limpios. La almohadilla de espuma viscoelástica y la diadema acolchada permiten usarlos durante horas.",
       "price": 129.99,
       "category": "Audio",
       "stock": 18,
-      "image": "/images/headset.svg"
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80",
+      "featured": true,
+      "warranty": "24 meses",
+      "highlights": [
+        "Cancelación activa de ruido híbrida",
+        "Drivers de 40 mm con sonido balanceado",
+        "Micrófono integrado con reducción de eco",
+        "Hasta 35 horas de autonomía",
+        "Conexión Bluetooth 5.2 y cable 3,5 mm"
+      ],
+      "specs": {
+        "Tipo": "Over-ear cerrado",
+        "Drivers": "40 mm dinámicos",
+        "Cancelación": "ANC híbrida, modo transparencia",
+        "Batería": "Hasta 35 horas sin ANC",
+        "Conectividad": "Bluetooth 5.2, USB-C, 3,5 mm",
+        "Peso": "260 g"
+      }
     },
     {
       "id": 6,
       "name": "Webcam Full HD Stream",
+      "brand": "StreamCam",
+      "sku": "HS-PE-006",
       "description": "Cámara 1080p a 60 fps con enfoque automático, corrección de luz y micrófono estéreo para streaming.",
+      "longDescription": "La Webcam Full HD Stream mejora videollamadas, clases y transmisiones sin necesidad de equipos profesionales. Su enfoque automático sigue el rostro y la corrección de luz compensa habitaciones con poca iluminación.\n\nEl soporte se adapta a monitores y trípodes, y la tapa de privacidad protege la lente cuando no se usa. El micrófono estéreo integrado capta el sonido de forma clara.",
       "price": 59.99,
       "category": "Periféricos",
       "stock": 0,
-      "image": "/images/webcam.svg"
+      "image": "https://images.unsplash.com/photo-1587826080692-f439cd0b70da?auto=format&fit=crop&w=1200&q=80",
+      "featured": false,
+      "warranty": "12 meses",
+      "highlights": [
+        "Video Full HD 1080p a 60 fps",
+        "Enfoque automático y corrección de luz",
+        "Micrófono estéreo integrado",
+        "Tapa de privacidad física",
+        "Compatible con Windows, macOS y OBS"
+      ],
+      "specs": {
+        "Resolución": "1920 x 1080 a 60 fps",
+        "Campo de visión": "90 grados",
+        "Enfoque": "Automático",
+        "Micrófono": "Estéreo con reducción de ruido",
+        "Conexión": "USB-C",
+        "Montaje": "Clip para monitor y rosca para trípode"
+      }
     },
     {
       "id": 7,
       "name": "SSD NVMe 1TB Velocity",
+      "brand": "Velocity",
+      "sku": "HS-AL-007",
       "description": "Unidad de estado sólido NVMe PCIe 4.0 con velocidades de lectura de hasta 5000 MB/s.",
+      "longDescription": "El SSD Velocity acelera el arranque del sistema, la carga de juegos y la transferencia de archivos grandes. Su controlador PCIe 4.0 aprovecha al máximo las plataformas modernas y mantiene un rendimiento estable.\n\nIncluye un disipador de aluminio de bajo perfil que ayuda a controlar la temperatura en sesiones intensas. Es compatible con slots M.2 2280 y con las principales consolas y notebooks.",
       "price": 109.99,
       "category": "Almacenamiento",
       "stock": 22,
-      "image": "/images/ssd.svg"
+      "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=1200&q=80",
+      "featured": true,
+      "warranty": "60 meses",
+      "highlights": [
+        "Lectura secuencial de hasta 5000 MB/s",
+        "Escritura secuencial de hasta 4400 MB/s",
+        "Formato M.2 2280 PCIe 4.0",
+        "Disipador de aluminio incluido",
+        "Garantía limitada de 5 años"
+      ],
+      "specs": {
+        "Capacidad": "1 TB",
+        "Interfaz": "NVMe PCIe 4.0 x4",
+        "Lectura": "5000 MB/s",
+        "Escritura": "4400 MB/s",
+        "Formato": "M.2 2280",
+        "Resistencia": "600 TBW"
+      }
     },
     {
       "id": 8,
       "name": "Memoria RAM 16GB DDR5",
+      "brand": "MemCore",
+      "sku": "HS-CO-008",
       "description": "Módulo de memoria DDR5 a 5600 MHz con disipador de aluminio y perfil bajo.",
+      "longDescription": "Este módulo DDR5 ofrece mayor ancho de banda y eficiencia energética para equipos de nueva generación. Su disipador de aluminio de perfil bajo facilita la instalación con coolers grandes.\n\nEs compatible con perfiles EXPO e XMP 3.0, lo que permite activar la frecuencia máxima desde la BIOS. Ideal para actualizar un equipo de trabajo o una PC gamer.",
       "price": 74.99,
       "category": "Componentes",
       "stock": 30,
-      "image": "/images/ram.svg"
+      "image": "https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=1200&q=80",
+      "featured": false,
+      "warranty": "120 meses",
+      "highlights": [
+        "16 GB en un único módulo",
+        "Frecuencia de 5600 MHz",
+        "Perfiles EXPO y XMP 3.0",
+        "Disipador de aluminio de perfil bajo",
+        "Garantía limitada de 10 años"
+      ],
+      "specs": {
+        "Capacidad": "16 GB",
+        "Tipo": "DDR5 UDIMM",
+        "Frecuencia": "5600 MHz",
+        "Latencia": "CL36",
+        "Voltaje": "1,25 V",
+        "Perfiles": "EXPO / XMP 3.0"
+      }
     },
     {
       "id": 9,
       "name": "Placa de Video RTX 4060",
+      "brand": "NVIDIA",
+      "sku": "HS-CO-009",
       "description": "GPU con 8 GB GDDR6, ray tracing y DLSS 3. Perfecta para jugar en 1080p a alto rendimiento.",
+      "longDescription": "La RTX 4060 ofrece un excelente equilibrio entre rendimiento, consumo y precio. Su arquitectura Ada Lovelace habilita ray tracing en tiempo real y DLSS 3 con generación de cuadros para jugar con más fluidez.\n\nEl sistema de refrigeración de doble ventilador mantiene temperaturas bajas y un funcionamiento silencioso. Incluye salidas DisplayPort 1.4 y HDMI 2.1 para configuraciones de alta frecuencia.",
       "price": 399.99,
       "category": "Componentes",
       "stock": 3,
-      "image": "/images/gpu.svg"
+      "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=1200&q=80",
+      "featured": true,
+      "warranty": "36 meses",
+      "highlights": [
+        "8 GB GDDR6 y 128 bits",
+        "Ray tracing y DLSS 3",
+        "Refrigeración de doble ventilador",
+        "Ideal para 1080p en ultra",
+        "Salidas HDMI 2.1 y DisplayPort 1.4"
+      ],
+      "specs": {
+        "Memoria": "8 GB GDDR6",
+        "Bus": "128 bits",
+        "Núcleos CUDA": "3072",
+        "Frecuencia boost": "2460 MHz",
+        "Consumo": "115 W",
+        "Salidas": "1x HDMI 2.1, 3x DisplayPort 1.4"
+      }
     },
     {
       "id": 10,
       "name": "Fuente 750W Gold",
+      "brand": "VoltPro",
+      "sku": "HS-CO-010",
       "description": "Fuente modular 80 Plus Gold con protección contra sobrecargas y ventilador de bajo ruido.",
+      "longDescription": "La fuente VoltPro 750W entrega energía estable y eficiente para equipos de gama media y alta. Su certificación 80 Plus Gold reduce el consumo y el calor generado.\n\nEl diseño totalmente modular simplifica el cableado y mejora el flujo de aire del gabinete. Incorpora protecciones OVP, UVP, OCP, OPP y SCP para cuidar todos los componentes.",
       "price": 94.99,
       "category": "Componentes",
       "stock": 14,
-      "image": "/images/psu.svg"
+      "image": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1200&q=80",
+      "featured": false,
+      "warranty": "60 meses",
+      "highlights": [
+        "750 W con certificación 80 Plus Gold",
+        "Cableado totalmente modular",
+        "Ventilador de 120 mm de bajo ruido",
+        "Protecciones eléctricas múltiples",
+        "Modo de funcionamiento semipasivo"
+      ],
+      "specs": {
+        "Potencia": "750 W",
+        "Certificación": "80 Plus Gold",
+        "Modularidad": "Total",
+        "Ventilador": "120 mm",
+        "Conectores": "24 pines, 2x EPS, 4x PCIe, 6x SATA",
+        "Garantía": "5 años"
+      }
     },
     {
       "id": 11,
       "name": "Motherboard B650 WiFi",
+      "brand": "MainCore",
+      "sku": "HS-CO-011",
       "description": "Placa base AM5 con soporte DDR5, WiFi 6, Bluetooth 5.2 y dos ranuras M.2 NVMe.",
+      "longDescription": "La B650 WiFi es una base sólida para armar un equipo AM5 moderno. Su VRM de 12+2 fases y los disipadores de aluminio soportan procesadores de alto rendimiento sin problemas.\n\nIncluye WiFi 6 y Bluetooth 5.2 integrados, dos slots M.2 con disipador y conectividad USB-C frontal. La BIOS actualizable por USB facilita el soporte de nuevos procesadores.",
       "price": 189.99,
       "category": "Componentes",
       "stock": 7,
-      "image": "/images/motherboard.svg"
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+      "featured": false,
+      "warranty": "36 meses",
+      "highlights": [
+        "Socket AM5 compatible con Ryzen 7000 y 9000",
+        "Cuatro ranuras DDR5 hasta 128 GB",
+        "WiFi 6 y Bluetooth 5.2 integrados",
+        "Dos ranuras M.2 NVMe PCIe 4.0",
+        "Actualización de BIOS por USB"
+      ],
+      "specs": {
+        "Socket": "AMD AM5",
+        "Chipset": "B650",
+        "Memoria": "4x DDR5 hasta 128 GB",
+        "Almacenamiento": "2x M.2 NVMe, 4x SATA",
+        "Red": "WiFi 6, Bluetooth 5.2, 2.5 GbE",
+        "Formato": "ATX"
+      }
     },
     {
       "id": 12,
       "name": "Micrófono USB Cast",
+      "brand": "CastAudio",
+      "sku": "HS-AU-012",
       "description": "Micrófono condensador USB con patrón cardioide, soporte de escritorio y salida para auriculares.",
+      "longDescription": "El CastAudio ofrece una captura clara y cálida para streaming, podcasting y videollamadas. Su patrón cardioide reduce el ruido de fondo y el soporte de escritorio aísla las vibraciones.\n\nNo necesita interfaz ni drivers: se conecta por USB-C y está listo para usar. El control de ganancia y la salida para auriculares permiten monitorear la voz sin latencia apreciable.",
       "price": 79.99,
       "category": "Audio",
       "stock": 12,
-      "image": "/images/microphone.svg"
+      "image": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80",
+      "featured": false,
+      "warranty": "24 meses",
+      "highlights": [
+        "Patrón polar cardioide",
+        "Conexión USB-C plug and play",
+        "Control de ganancia y silenciamiento",
+        "Salida para auriculares con monitoreo",
+        "Base de escritorio con aislación"
+      ],
+      "specs": {
+        "Tipo": "Condensador USB",
+        "Patrón": "Cardioide",
+        "Frecuencia": "20 Hz a 20 kHz",
+        "Resolución": "24 bits / 96 kHz",
+        "Conexión": "USB-C",
+        "Incluye": "Base, cable USB-C y adaptador"
+      }
     },
     {
       "id": 13,
       "name": "Silla Gamer Ergo X",
+      "brand": "ErgoSeat",
+      "sku": "HS-AC-013",
       "description": "Silla ergonómica con apoyabrazos ajustables, reclinación de 155 grados y soporte lumbar.",
+      "longDescription": "La Ergo X está diseñada para largas sesiones frente al escritorio, combinando estética gamer y soporte ergonómico. El respaldo reclinable y el soporte lumbar ajustable ayudan a mantener una postura correcta.\n\nLa estructura de acero y la base de cinco puntos brindan estabilidad. El tapizado de cuero sintético es fácil de limpiar y las ruedas de nylon son aptas para pisos duros.",
       "price": 249.99,
       "category": "Accesorios",
       "stock": 6,
-      "image": "/images/chair.svg"
+      "image": "https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=1200&q=80",
+      "featured": true,
+      "warranty": "24 meses",
+      "highlights": [
+        "Reclinación de hasta 155 grados",
+        "Apoyabrazos regulables en 4 direcciones",
+        "Soporte lumbar y almohada cervical",
+        "Estructura de acero y base de 5 puntos",
+        "Soporta hasta 150 kg"
+      ],
+      "specs": {
+        "Material": "Cuero sintético y malla transpirable",
+        "Reclinación": "90 a 155 grados",
+        "Altura": "Ajustable con pistón de gas",
+        "Base": "Nylon reforzado, 5 ruedas",
+        "Peso máximo": "150 kg",
+        "Peso del producto": "19 kg"
+      }
     },
     {
       "id": 14,
       "name": "Hub USB-C 7 en 1",
+      "brand": "LinkHub",
+      "sku": "HS-AC-014",
       "description": "Adaptador con HDMI 4K, lector SD, tres puertos USB 3.0 y carga rápida de 100 W.",
+      "longDescription": "El Hub USB-C 7 en 1 convierte un solo puerto en una estación de trabajo completa. Permite conectar un monitor 4K, tarjetas SD y microSD, periféricos USB y un cargador de hasta 100 W.\n\nSu cuerpo de aluminio disipa el calor y resiste el uso diario. Es compatible con notebooks, tablets y teléfonos con USB-C, sin necesidad de instalar controladores.",
       "price": 29.99,
       "category": "Accesorios",
       "stock": 40,
-      "image": "/images/hub.svg"
+      "image": "https://images.unsplash.com/photo-1625723044792-44de16ccb4e9?auto=format&fit=crop&w=1200&q=80",
+      "featured": false,
+      "warranty": "12 meses",
+      "highlights": [
+        "HDMI con salida 4K a 30 Hz",
+        "Tres puertos USB 3.0 de 5 Gbps",
+        "Lector de tarjetas SD y microSD",
+        "Carga pass-through de 100 W",
+        "Cuerpo de aluminio compacto"
+      ],
+      "specs": {
+        "Puertos": "HDMI, 3x USB-A 3.0, SD, microSD, USB-C PD",
+        "Video": "4K a 30 Hz",
+        "Carga": "USB-C PD hasta 100 W",
+        "Velocidad USB": "5 Gbps",
+        "Material": "Aluminio",
+        "Cable": "15 cm integrado"
+      }
+    },
+    {
+      "id": 15,
+      "name": "Refrigeración Líquida Frost 240",
+      "brand": "FrostByte",
+      "sku": "HS-CO-015",
+      "description": "Kit de refrigeración líquida AIO de 240 mm con dos ventiladores ARGB y bomba silenciosa.",
+      "longDescription": "El Frost 240 mantiene a raya las temperaturas de procesadores de alto consumo. Su radiador de 240 mm y sus dos ventiladores PWM generan un flujo de aire constante con un nivel de ruido contenido.\n\nLa bomba de cámara cerrada evita el mantenimiento y el bloque de cobre mejora la transferencia térmica. La iluminación ARGB se sincroniza con las placas base compatibles.",
+      "price": 119.99,
+      "category": "Refrigeración",
+      "stock": 2,
+      "image": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1200&q=80",
+      "featured": false,
+      "warranty": "36 meses",
+      "highlights": [
+        "Radiador de 240 mm y dos ventiladores PWM",
+        "Bloque de cobre y bomba de bajo ruido",
+        "Iluminación ARGB sincronizable",
+        "Compatible con sockets Intel y AMD",
+        "Tubos de goma reforzada de 400 mm"
+      ],
+      "specs": {
+        "Tipo": "AIO 240 mm",
+        "Ventiladores": "2x 120 mm PWM ARGB",
+        "Velocidad": "800 a 1800 RPM",
+        "Flujo de aire": "68 CFM",
+        "Ruido": "Hasta 28 dBA",
+        "Compatibilidad": "LGA 1700/1200/115x, AM4/AM5"
+      }
+    },
+    {
+      "id": 16,
+      "name": "Router WiFi 6 Mesh AX3000",
+      "brand": "NetWave",
+      "sku": "HS-RE-016",
+      "description": "Router dual band AX3000 con tecnología Mesh, cuatro antenas y cobertura de hasta 180 m².",
+      "longDescription": "El NetWave AX3000 ofrece WiFi 6 de alta velocidad para hogares con muchos dispositivos conectados. La tecnología Mesh permite sumar unidades para ampliar la cobertura sin perder velocidad ni cambiar de red.\n\nIncluye configuración por app, red de invitados, control parental y cuatro puertos Gigabit. Es compatible con los principales operadores de fibra y cable.",
+      "price": 129.99,
+      "category": "Redes",
+      "stock": 16,
+      "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80",
+      "featured": true,
+      "warranty": "24 meses",
+      "highlights": [
+        "WiFi 6 dual band AX3000",
+        "Cobertura de hasta 180 m²",
+        "Compatible con red Mesh",
+        "Cuatro puertos Gigabit Ethernet",
+        "Control parental y red de invitados"
+      ],
+      "specs": {
+        "Estándar": "WiFi 6 (802.11ax)",
+        "Velocidad": "2402 Mbps en 5 GHz + 574 Mbps en 2.4 GHz",
+        "Antenas": "4 exteriores de alta ganancia",
+        "Puertos": "1 WAN + 3 LAN Gigabit",
+        "Seguridad": "WPA3",
+        "Cobertura": "Hasta 180 m²"
+      }
+    },
+    {
+      "id": 17,
+      "name": "Tablet Studio 11",
+      "brand": "StudioTab",
+      "sku": "HS-NB-017",
+      "description": "Tablet de 11 pulgadas con pantalla 2K, lápiz óptico incluido y 128 GB de almacenamiento.",
+      "longDescription": "La Studio 11 es una tablet versátil para dibujar, tomar apuntes y consumir contenido. Su pantalla 2K de 11 pulgadas ofrece colores vivos y soporte para el lápiz óptico de 4096 niveles de presión.\n\nCon 8 GB de RAM y 128 GB de almacenamiento, se desenvuelve bien en multitarea. Incluye altavoces cuádruples, batería para todo el día y funda con teclado opcional.",
+      "price": 499.99,
+      "category": "Computación",
+      "stock": 11,
+      "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=1200&q=80",
+      "featured": false,
+      "warranty": "24 meses",
+      "highlights": [
+        "Pantalla 2K de 11 pulgadas",
+        "Lápiz óptico con 4096 niveles de presión",
+        "8 GB de RAM y 128 GB de almacenamiento",
+        "Cuatro altavoces con sonido envolvente",
+        "Hasta 12 horas de batería"
+      ],
+      "specs": {
+        "Pantalla": "11\" IPS 2K (2000 x 1200)",
+        "Procesador": "Octa-core 2.8 GHz",
+        "Memoria": "8 GB",
+        "Almacenamiento": "128 GB ampliable por microSD",
+        "Batería": "8000 mAh, hasta 12 horas",
+        "Incluye": "Lápiz óptico y cargador USB-C"
+      }
+    },
+    {
+      "id": 18,
+      "name": "Docking Station Pro 12 en 1",
+      "brand": "DockPro",
+      "sku": "HS-AC-018",
+      "description": "Estación de acoplamiento con doble HDMI, Ethernet, lector de tarjetas y carga de 100 W.",
+      "longDescription": "La Docking Station Pro transforma una notebook en un puesto de trabajo completo con un solo cable. Permite conectar dos monitores, red cableada, periféricos USB y tarjetas de memoria al mismo tiempo.\n\nSu diseño vertical ahorra espacio y mejora la disipación. La carga de 100 W mantiene la notebook alimentada mientras se usan todos los puertos, y el cable USB-C reforzado resiste miles de conexiones.",
+      "price": 89.99,
+      "category": "Accesorios",
+      "stock": 20,
+      "image": "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&w=1200&q=80",
+      "featured": false,
+      "warranty": "24 meses",
+      "highlights": [
+        "Doble salida HDMI 4K",
+        "Ethernet Gigabit y cuatro USB 3.0",
+        "Lector SD y microSD",
+        "Carga USB-C de 100 W",
+        "Diseño vertical con base antideslizante"
+      ],
+      "specs": {
+        "Puertos": "2x HDMI, 4x USB-A 3.0, USB-C PD, RJ45, SD, microSD",
+        "Video": "Dual 4K a 30 Hz",
+        "Red": "Ethernet Gigabit",
+        "Carga": "USB-C PD 100 W",
+        "Compatibilidad": "Windows, macOS y ChromeOS",
+        "Cable": "USB-C de 20 cm"
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "productId": 1,
+      "productName": "Notebook Gamer Nova 15",
+      "userId": "u-maria",
+      "userName": "María Fernández",
+      "rating": 5,
+      "comment": "La uso para diseño y gaming y rinde muy bien. La pantalla es excelente y no se calienta en sesiones largas.",
+      "createdAt": "2026-10-18T14:20:00.000Z",
+      "likes": 3,
+      "dislikes": 0,
+      "likedBy": [
+        "u-cliente",
+        "u-admin",
+        "u-javier"
+      ],
+      "dislikedBy": []
+    },
+    {
+      "id": 2,
+      "productId": 1,
+      "productName": "Notebook Gamer Nova 15",
+      "userId": "u-cliente",
+      "userName": "Carlos Cliente",
+      "rating": 4,
+      "comment": "Muy buena relación precio-rendimiento. El teclado podría tener más recorrido, pero el resto es impecable.",
+      "createdAt": "2026-10-27T09:05:00.000Z",
+      "likes": 1,
+      "dislikes": 0,
+      "likedBy": [
+        "u-maria"
+      ],
+      "dislikedBy": []
+    },
+    {
+      "id": 3,
+      "productId": 2,
+      "productName": "Mouse Inalámbrico Pulse",
+      "userId": "u-javier",
+      "userName": "Javier Ríos",
+      "rating": 5,
+      "comment": "Liviano, preciso y la batería dura muchísimo. Lo uso ocho horas por día y sigue perfecto.",
+      "createdAt": "2026-10-22T18:40:00.000Z",
+      "likes": 2,
+      "dislikes": 0,
+      "likedBy": [
+        "u-cliente",
+        "u-sofia"
+      ],
+      "dislikedBy": []
+    },
+    {
+      "id": 4,
+      "productId": 3,
+      "productName": "Teclado Mecánico K68 RGB",
+      "userId": "u-cliente",
+      "userName": "Carlos Cliente",
+      "rating": 5,
+      "comment": "El formato 65% es ideal para mi escritorio. Los switches lineales son suaves y el RGB se ve espectacular.",
+      "createdAt": "2026-10-30T11:15:00.000Z",
+      "likes": 1,
+      "dislikes": 0,
+      "likedBy": [
+        "u-javier"
+      ],
+      "dislikedBy": []
+    },
+    {
+      "id": 5,
+      "productId": 4,
+      "productName": "Monitor UltraWide 29\"",
+      "userId": "u-admin",
+      "userName": "Ana Administradora",
+      "rating": 4,
+      "comment": "Trabajar con dos ventanas al lado es otra cosa. La base es firme y los colores vienen bien calibrados.",
+      "createdAt": "2026-10-12T16:30:00.000Z",
+      "likes": 0,
+      "dislikes": 0,
+      "likedBy": [],
+      "dislikedBy": []
+    },
+    {
+      "id": 6,
+      "productId": 5,
+      "productName": "Auriculares Studio Pro",
+      "userId": "u-maria",
+      "userName": "María Fernández",
+      "rating": 5,
+      "comment": "La cancelación de ruido funciona de verdad. Los uso en la oficina y no escucho nada alrededor.",
+      "createdAt": "2026-10-05T08:50:00.000Z",
+      "likes": 2,
+      "dislikes": 1,
+      "likedBy": [
+        "u-cliente",
+        "u-admin"
+      ],
+      "dislikedBy": [
+        "u-javier"
+      ]
+    },
+    {
+      "id": 7,
+      "productId": 5,
+      "productName": "Auriculares Studio Pro",
+      "userId": "u-sofia",
+      "userName": "Sofía Méndez",
+      "rating": 4,
+      "comment": "Muy cómodos y con buen sonido. El estuche podría ser más rígido para transportarlos.",
+      "createdAt": "2026-10-19T20:10:00.000Z",
+      "likes": 1,
+      "dislikes": 0,
+      "likedBy": [
+        "u-cliente"
+      ],
+      "dislikedBy": []
+    },
+    {
+      "id": 8,
+      "productId": 7,
+      "productName": "SSD NVMe 1TB Velocity",
+      "userId": "u-cliente",
+      "userName": "Carlos Cliente",
+      "rating": 5,
+      "comment": "Instalarlo fue muy simple y la diferencia de velocidad es enorme. La notebook arranca en segundos.",
+      "createdAt": "2026-10-24T13:25:00.000Z",
+      "likes": 3,
+      "dislikes": 0,
+      "likedBy": [
+        "u-maria",
+        "u-javier",
+        "u-sofia"
+      ],
+      "dislikedBy": []
+    },
+    {
+      "id": 9,
+      "productId": 9,
+      "productName": "Placa de Video RTX 4060",
+      "userId": "u-javier",
+      "userName": "Javier Ríos",
+      "rating": 3,
+      "comment": "Rinde bien en 1080p, pero para 1440p se queda corta en algunos juegos exigentes.",
+      "createdAt": "2026-09-28T17:00:00.000Z",
+      "likes": 0,
+      "dislikes": 1,
+      "likedBy": [],
+      "dislikedBy": [
+        "u-cliente"
+      ]
+    },
+    {
+      "id": 10,
+      "productId": 13,
+      "productName": "Silla Gamer Ergo X",
+      "userId": "u-sofia",
+      "userName": "Sofía Méndez",
+      "rating": 5,
+      "comment": "Me cambió la espalda. El soporte lumbar es regulable y el tapizado es fácil de limpiar.",
+      "createdAt": "2026-10-09T10:45:00.000Z",
+      "likes": 2,
+      "dislikes": 0,
+      "likedBy": [
+        "u-admin",
+        "u-maria"
+      ],
+      "dislikedBy": []
+    },
+    {
+      "id": 12,
+      "productId": 17,
+      "productName": "Tablet Studio 11",
+      "userId": "u-maria",
+      "userName": "María Fernández",
+      "rating": 5,
+      "comment": "El lápiz responde muy bien y la pantalla tiene colores hermosos. La uso para ilustrar todos los días.",
+      "createdAt": "2026-10-26T12:00:00.000Z",
+      "likes": 2,
+      "dislikes": 0,
+      "likedBy": [
+        "u-cliente",
+        "u-admin"
+      ],
+      "dislikedBy": []
+    },
+    {
+      "id": 13,
+      "productId": 18,
+      "productName": "Docking Station Pro 12 en 1",
+      "userId": "u-admin",
+      "userName": "Ana Administradora",
+      "rating": 4,
+      "comment": "Conecto dos monitores y todos mis periféricos con un solo cable. Muy práctica para el home office.",
+      "createdAt": "2026-10-16T15:20:00.000Z",
+      "likes": 1,
+      "dislikes": 0,
+      "likedBy": [
+        "u-javier"
+      ],
+      "dislikedBy": []
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "userId": "u-cliente",
+      "userName": "Carlos Cliente",
+      "userEmail": "user@hardstore.com",
+      "items": [
+        {
+          "productId": 2,
+          "name": "Mouse Inalámbrico Pulse",
+          "category": "Periféricos",
+          "price": 39.99,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+          "productId": 3,
+          "name": "Teclado Mecánico K68 RGB",
+          "category": "Periféricos",
+          "price": 89.5,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1200&q=80"
+        }
+      ],
+      "subtotal": 129.49,
+      "shipping": 19.99,
+      "total": 149.48,
+      "paymentMethod": "Tarjeta de crédito",
+      "paymentDetail": "Visa •••• 4242 · 3 cuotas",
+      "paymentStatus": "Pago aprobado (simulado)",
+      "status": "Entregado",
+      "createdAt": "2026-09-12T13:40:00.000Z",
+      "shippingAddress": {
+        "fullName": "Carlos Cliente",
+        "address": "Av. Corrientes 1234, Piso 5 B",
+        "city": "Ciudad Autónoma de Buenos Aires",
+        "province": "Buenos Aires",
+        "postalCode": "C1043",
+        "phone": "+54 11 5555-1234"
+      }
+    },
+    {
+      "id": 2,
+      "userId": "u-cliente",
+      "userName": "Carlos Cliente",
+      "userEmail": "user@hardstore.com",
+      "items": [
+        {
+          "productId": 4,
+          "name": "Monitor UltraWide 29\"",
+          "category": "Monitores",
+          "price": 349.99,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+          "productId": 14,
+          "name": "Hub USB-C 7 en 1",
+          "category": "Accesorios",
+          "price": 29.99,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1625723044792-44de16ccb4e9?auto=format&fit=crop&w=1200&q=80"
+        }
+      ],
+      "subtotal": 379.98,
+      "shipping": 0,
+      "total": 379.98,
+      "paymentMethod": "Transferencia bancaria",
+      "paymentDetail": "Transferencia al alias HARDSTORE.AR",
+      "paymentStatus": "Pago acreditado",
+      "status": "Enviado",
+      "createdAt": "2026-10-21T10:15:00.000Z",
+      "shippingAddress": {
+        "fullName": "Carlos Cliente",
+        "address": "Av. Corrientes 1234, Piso 5 B",
+        "city": "Ciudad Autónoma de Buenos Aires",
+        "province": "Buenos Aires",
+        "postalCode": "C1043",
+        "phone": "+54 11 5555-1234"
+      }
+    },
+    {
+      "id": 3,
+      "userId": "u-admin",
+      "userName": "Ana Administradora",
+      "userEmail": "admin@hardstore.com",
+      "items": [
+        {
+          "productId": 7,
+          "name": "SSD NVMe 1TB Velocity",
+          "category": "Almacenamiento",
+          "price": 109.99,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+          "productId": 8,
+          "name": "Memoria RAM 16GB DDR5",
+          "category": "Componentes",
+          "price": 74.99,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=1200&q=80"
+        }
+      ],
+      "subtotal": 294.97,
+      "shipping": 19.99,
+      "total": 314.96,
+      "paymentMethod": "Tarjeta de débito",
+      "paymentDetail": "Mastercard •••• 8891",
+      "paymentStatus": "Pago aprobado (simulado)",
+      "status": "Confirmado",
+      "createdAt": "2026-10-29T18:05:00.000Z",
+      "shippingAddress": {
+        "fullName": "Ana Administradora",
+        "address": "Av. Tecnología 2026, Torre B",
+        "city": "Ciudad Autónoma de Buenos Aires",
+        "province": "Buenos Aires",
+        "postalCode": "C1425",
+        "phone": "+54 11 5555-2026"
+      }
+    },
+    {
+      "id": 4,
+      "userId": "u-cliente",
+      "userName": "Carlos Cliente",
+      "userEmail": "user@hardstore.com",
+      "items": [
+        {
+          "productId": 5,
+          "name": "Auriculares Studio Pro",
+          "category": "Audio",
+          "price": 129.99,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+          "productId": 12,
+          "name": "Micrófono USB Cast",
+          "category": "Audio",
+          "price": 79.99,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80"
+        }
+      ],
+      "subtotal": 209.98,
+      "shipping": 19.99,
+      "total": 229.97,
+      "paymentMethod": "Efectivo al retirar",
+      "paymentDetail": "Pago pendiente en el local",
+      "paymentStatus": "Pendiente de pago",
+      "status": "Confirmado",
+      "createdAt": "2026-11-01T09:30:00.000Z",
+      "shippingAddress": {
+        "fullName": "Carlos Cliente",
+        "address": "Av. Corrientes 1234, Piso 5 B",
+        "city": "Ciudad Autónoma de Buenos Aires",
+        "province": "Buenos Aires",
+        "postalCode": "C1043",
+        "phone": "+54 11 5555-1234"
+      }
+    },
+    {
+      "userId": "u-cliente",
+      "userName": "Carlos Cliente",
+      "userEmail": "user@hardstore.com",
+      "items": [
+        {
+          "productId": 15,
+          "name": "Refrigeración Líquida Frost 240",
+          "category": "Refrigeración",
+          "price": 119.99,
+          "quantity": 7,
+          "image": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1200&q=80"
+        }
+      ],
+      "subtotal": 839.93,
+      "shipping": 0,
+      "total": 839.93,
+      "paymentMethod": "Tarjeta de crédito",
+      "paymentDetail": "Tarjeta •••• 3534 · 1 cuota",
+      "paymentStatus": "Pago aprobado (simulado)",
+      "status": "Confirmado",
+      "createdAt": "2026-11-02T18:16:00.931Z",
+      "shippingAddress": {
+        "fullName": "Carlos Cliente",
+        "address": "xdfdsf",
+        "city": "sdfsdf",
+        "province": "Buenos Aires",
+        "postalCode": "sdfsdf",
+        "phone": "5665165"
+      },
+      "id": 5
     }
   ]
 }

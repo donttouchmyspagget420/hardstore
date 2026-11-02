@@ -22,7 +22,7 @@ async function request(path, options = {}) {
 
   if (!response.ok) {
     if (response.status === 404) {
-      const error = new Error('El producto solicitado no existe o fue eliminado.')
+      const error = new Error('El recurso solicitado no existe o fue eliminado.')
       error.status = 404
       throw error
     }
@@ -42,6 +42,26 @@ export const productApi = {
   update: (id, product) =>
     request(`/products/${encodeURIComponent(id)}`, { method: 'PATCH', body: JSON.stringify(product) }),
   remove: (id) => request(`/products/${encodeURIComponent(id)}`, { method: 'DELETE' }),
+}
+
+export const reviewApi = {
+  getAll: () => request('/reviews?_sort=createdAt&_order=desc'),
+  getByProduct: (productId) =>
+    request(
+      `/reviews?productId=${encodeURIComponent(productId)}&_sort=createdAt&_order=desc`,
+    ),
+  create: (review) => request('/reviews', { method: 'POST', body: JSON.stringify(review) }),
+  update: (id, review) =>
+    request(`/reviews/${encodeURIComponent(id)}`, { method: 'PATCH', body: JSON.stringify(review) }),
+  remove: (id) => request(`/reviews/${encodeURIComponent(id)}`, { method: 'DELETE' }),
+}
+
+export const orderApi = {
+  getAll: () => request('/orders?_sort=createdAt&_order=desc'),
+  getByUser: (userId) =>
+    request(`/orders?userId=${encodeURIComponent(userId)}&_sort=createdAt&_order=desc`),
+  getById: (id) => request(`/orders/${encodeURIComponent(id)}`),
+  create: (order) => request('/orders', { method: 'POST', body: JSON.stringify(order) }),
 }
 
 export { API_URL }

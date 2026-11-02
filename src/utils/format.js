@@ -15,6 +15,39 @@ export function formatNumber(value) {
   return Number.isFinite(amount) ? new Intl.NumberFormat('es-AR').format(amount) : '—'
 }
 
+const dateFormatter = new Intl.DateTimeFormat('es-AR', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+})
+
+const dateTimeFormatter = new Intl.DateTimeFormat('es-AR', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+})
+
+export function formatDate(value) {
+  const date = new Date(value)
+  return Number.isNaN(date.getTime()) ? '—' : dateFormatter.format(date)
+}
+
+export function formatDateTime(value) {
+  const date = new Date(value)
+  return Number.isNaN(date.getTime()) ? '—' : dateTimeFormatter.format(date)
+}
+
+export function getInitials(name = '') {
+  return name
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part.charAt(0).toUpperCase())
+    .join('')
+}
+
 export function getStockState(stock) {
   const amount = Number(stock) || 0
   if (amount === 0) {

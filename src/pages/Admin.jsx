@@ -47,7 +47,10 @@ function Admin() {
 
     return products.filter(
       (product) =>
-        product.name.toLowerCase().includes(term) || product.category.toLowerCase().includes(term),
+        product.name.toLowerCase().includes(term) ||
+        product.category.toLowerCase().includes(term) ||
+        String(product.brand || '').toLowerCase().includes(term) ||
+        String(product.sku || '').toLowerCase().includes(term),
     )
   }, [products, tableSearch])
 
@@ -214,7 +217,7 @@ function Admin() {
 
           <div className="col-xl-7">
             <div className="card border-0 shadow-sm admin-list-card">
-              <div className="card-header bg-white border-0 p-4 pb-3">
+              <div className="card-header border-0 p-4 pb-3">
                 <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
                   <div>
                     <h2 className="h4 mb-1">Inventario</h2>
@@ -234,7 +237,7 @@ function Admin() {
                   id="admin-search"
                   value={tableSearch}
                   onChange={setTableSearch}
-                  placeholder="Buscar por nombre o categoría..."
+                  placeholder="Buscar por nombre, marca, SKU o categoría..."
                 />
               </div>
 
@@ -290,13 +293,21 @@ function Admin() {
                                     onError={imageFallback}
                                   />
                                   <div>
-                                    <span className="fw-semibold d-block">{product.name}</span>
-                                    <span className="text-secondary small">ID #{product.id}</span>
+                                    <span className="fw-semibold d-block">
+                                      {product.name}
+                                      {product.featured && (
+                                        <i className="bi bi-star-fill text-warning ms-1" aria-label="Destacado" />
+                                      )}
+                                    </span>
+                                    <span className="text-secondary small">
+                                      {product.brand ? `${product.brand} · ` : ''}
+                                      {product.sku || `ID #${product.id}`}
+                                    </span>
                                   </div>
                                 </div>
                               </td>
                               <td>
-                                <span className="badge text-bg-light border">{product.category}</span>
+                                <span className="badge badge-soft">{product.category}</span>
                               </td>
                               <td className="text-end fw-semibold">{formatCurrency(product.price)}</td>
                               <td className="text-center">

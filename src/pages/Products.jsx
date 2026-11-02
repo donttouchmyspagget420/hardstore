@@ -78,7 +78,7 @@ function Products() {
                 Explorá el catálogo, filtrá por categoría y encontrá el hardware que necesitás.
               </p>
             </div>
-            <span className="badge text-bg-light align-self-start align-self-lg-end px-3 py-2">
+            <span className="badge badge-soft-light align-self-start align-self-lg-end px-3 py-2">
               {loading ? 'Cargando...' : `${products.length} productos disponibles`}
             </span>
           </div>

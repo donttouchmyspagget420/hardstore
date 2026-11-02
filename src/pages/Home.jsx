@@ -50,12 +50,35 @@ const CATEGORY_SHOWCASE = [
     icon: 'bi-headphones',
     text: 'Sonido profesional para gaming, música y streaming.',
   },
+  {
+    name: 'Monitores',
+    icon: 'bi-display',
+    text: 'Pantallas nítidas para trabajar, crear y jugar.',
+  },
+  {
+    name: 'Almacenamiento',
+    icon: 'bi-device-hdd',
+    text: 'SSD y soluciones rápidas para guardar tus datos.',
+  },
+  {
+    name: 'Refrigeración',
+    icon: 'bi-fan',
+    text: 'Mantené tu equipo fresco y silencioso.',
+  },
+  {
+    name: 'Redes',
+    icon: 'bi-router',
+    text: 'Conectividad estable para toda la casa u oficina.',
+  },
 ]
 
 function Home() {
   const { products, loading, error, refetch } = useProducts()
 
-  const featured = useMemo(() => products.slice(0, 4), [products])
+  const featured = useMemo(() => {
+    const highlighted = products.filter((product) => product.featured)
+    return (highlighted.length > 0 ? highlighted : products).slice(0, 4)
+  }, [products])
   const totalStock = useMemo(
     () => products.reduce((sum, product) => sum + (Number(product.stock) || 0), 0),
     [products],
@@ -88,8 +111,8 @@ function Home() {
                   <i className="bi bi-arrow-right ms-2" aria-hidden="true" />
                 </Link>
                 <Link className="btn btn-outline-light btn-lg px-4" to="/login">
-                  <i className="bi bi-shield-lock me-2" aria-hidden="true" />
-                  Acceso admin
+                  <i className="bi bi-person-circle me-2" aria-hidden="true" />
+                  Ingresar a mi cuenta
                 </Link>
               </div>
               <div className="d-flex flex-wrap gap-4 mt-4 small text-white-50">
@@ -217,7 +240,9 @@ function Home() {
             </div>
             <div className="col-lg-5 text-lg-end">
               <p className="text-secondary mb-0">
-                {products.length || 14} productos disponibles con stock y precios actualizados.
+                {loading
+                  ? 'Cargando productos y precios actualizados...'
+                  : `${products.length} productos disponibles con stock y precios actualizados.`}
               </p>
             </div>
           </div>

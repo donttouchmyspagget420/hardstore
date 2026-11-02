@@ -8,6 +8,24 @@ const EMPTY_FORM = {
   category: CATEGORIES[0],
   stock: '',
   image: '/images/notebook.svg',
+  brand: '',
+  sku: '',
+  warranty: '12 meses',
+  featured: false,
+  longDescription: '',
+  highlights: '',
+  specs: '',
+}
+
+function toTextLines(value) {
+  return Array.isArray(value) ? value.join('\n') : ''
+}
+
+function specsToText(specs) {
+  if (!specs || typeof specs !== 'object') return ''
+  return Object.entries(specs)
+    .map(([key, value]) => `${key}: ${value}`)
+    .join('\n')
 }
 
 function toFormValues(product) {
@@ -20,7 +38,33 @@ function toFormValues(product) {
     category: product.category || CATEGORIES[0],
     stock: product.stock != null ? String(product.stock) : '',
     image: product.image || DEFAULT_IMAGE,
+    brand: product.brand ?? '',
+    sku: product.sku ?? '',
+    warranty: product.warranty ?? '12 meses',
+    featured: Boolean(product.featured),
+    longDescription: product.longDescription ?? '',
+    highlights: toTextLines(product.highlights),
+    specs: specsToText(product.specs),
   }
+}
+
+function parseLines(value) {
+  return value
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+}
+
+function parseSpecs(value) {
+  return parseLines(value).reduce((result, line) => {
+    const separator = line.indexOf(':')
+    if (separator <= 0) return result
+
+    const key = line.slice(0, separator).trim()
+    const specValue = line.slice(separator + 1).trim()
+    if (key && specValue) result[key] = specValue
+    return result
+  }, {})
 }
 
 function validate(values) {
@@ -65,8 +109,8 @@ function ProductForm({ initialValues = null, submitting = false, onSubmit, onCan
   const previewSrc = imageFailed ? DEFAULT_IMAGE : form.image.trim() || DEFAULT_IMAGE
 
   const handleChange = (event) => {
-    const { name, value } = event.target
-    setForm((current) => ({ ...current, [name]: value }))
+    const { name, value, type, checked } = event.target
+    setForm((current) => ({ ...current, [name]: type === 'checkbox' ? checked : value }))
     setErrors((current) => ({ ...current, [name]: undefined }))
     if (name === 'image') setImageFailed(false)
   }
@@ -89,6 +133,13 @@ function ProductForm({ initialValues = null, submitting = false, onSubmit, onCan
       category: form.category,
       stock: Number(form.stock),
       image: form.image.trim(),
+      brand: form.brand.trim(),
+      sku: form.sku.trim(),
+      warranty: form.warranty.trim(),
+      featured: form.featured,
+      longDescription: form.longDescription.trim(),
+      highlights: parseLines(form.highlights),
+      specs: parseSpecs(form.specs),
     })
   }
 
@@ -129,7 +180,7 @@ function ProductForm({ initialValues = null, submitting = false, onSubmit, onCan
 
         <div className="mb-3">
           <label className="form-label" htmlFor={`${formId}-description`}>
-            Descripción <span className="text-danger">*</span>
+            Descripción corta <span className="text-danger">*</span>
           </label>
           <textarea
             id={`${formId}-description`}
@@ -214,11 +265,11 @@ function ProductForm({ initialValues = null, submitting = false, onSubmit, onCan
             className={fieldClass('image')}
             value={form.image}
             onChange={handleChange}
-            placeholder="/images/notebook.svg"
+            placeholder="https://... o /images/notebook.svg"
           />
           {errors.image && <div className="invalid-feedback">{errors.image}</div>}
           <div className="form-text">
-            Podés usar una de las imágenes incluidas en <code>/public/images</code> o una URL externa.
+            Podés usar una imagen local de <code>/public/images</code> o una URL externa.
           </div>
         </div>
 
@@ -234,7 +285,125 @@ function ProductForm({ initialValues = null, submitting = false, onSubmit, onCan
           </div>
         </div>
 
-        <div className="d-flex flex-wrap gap-2">
+        <details className="form-extra" open={isEditing}>
+          <summary>
+            <i className="bi bi-card-text me-2" aria-hidden="true" />
+            Información ampliada
+            <span className="form-extra-hint">Marca, ficha técnica y descripción larga</span>
+          </summary>
+
+          <div className="row g-3 mt-1 mb-3">
+            <div className="col-sm-6">
+              <label className="form-label" htmlFor={`${formId}-brand`}>
+                Marca
+              </label>
+              <input
+                id={`${formId}-brand`}
+                type="text"
+                name="brand"
+                className="form-control"
+                value={form.brand}
+                onChange={handleChange}
+                placeholder="Ej: NovaTech"
+              />
+            </div>
+            <div className="col-sm-6">
+              <label className="form-label" htmlFor={`${formId}-sku`}>
+                SKU
+              </label>
+              <input
+                id={`${formId}-sku`}
+                type="text"
+                name="sku"
+                className="form-control"
+                value={form.sku}
+                onChange={handleChange}
+                placeholder="HS-NB-019"
+              />
+            </div>
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label" htmlFor={`${formId}-warranty`}>
+              Garantía
+            </label>
+            <input
+              id={`${formId}-warranty`}
+              type="text"
+              name="warranty"
+              className="form-control"
+              value={form.warranty}
+              onChange={handleChange}
+              placeholder="12 meses"
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label" htmlFor={`${formId}-longDescription`}>
+              Descripción larga
+            </label>
+            <textarea
+              id={`${formId}-longDescription`}
+              name="longDescription"
+              rows="4"
+              className="form-control"
+              value={form.longDescription}
+              onChange={handleChange}
+              placeholder="Contá con más detalle para qué sirve y qué incluye el producto..."
+            />
+            <div className="form-text">
+              Separá los párrafos con un salto de línea para mostrarlos en bloques.
+            </div>
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label" htmlFor={`${formId}-highlights`}>
+              Puntos destacados
+            </label>
+            <textarea
+              id={`${formId}-highlights`}
+              name="highlights"
+              rows="4"
+              className="form-control"
+              value={form.highlights}
+              onChange={handleChange}
+              placeholder={'Procesador de 8 núcleos\nPantalla de 165 Hz\nSSD de 512 GB'}
+            />
+            <div className="form-text">Un beneficio por línea.</div>
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label" htmlFor={`${formId}-specs`}>
+              Especificaciones técnicas
+            </label>
+            <textarea
+              id={`${formId}-specs`}
+              name="specs"
+              rows="5"
+              className="form-control"
+              value={form.specs}
+              onChange={handleChange}
+              placeholder={'Procesador: AMD Ryzen 7\nMemoria: 16 GB DDR5\nAlmacenamiento: SSD 512 GB'}
+            />
+            <div className="form-text">Formato: <code>Clave: valor</code>, una por línea.</div>
+          </div>
+
+          <div className="form-check form-switch mb-2">
+            <input
+              id={`${formId}-featured`}
+              type="checkbox"
+              name="featured"
+              className="form-check-input"
+              checked={form.featured}
+              onChange={handleChange}
+            />
+            <label className="form-check-label" htmlFor={`${formId}-featured`}>
+              Mostrar como producto destacado
+            </label>
+          </div>
+        </details>
+
+        <div className="d-flex flex-wrap gap-2 mt-4">
           <button type="submit" className="btn btn-brand flex-grow-1" disabled={submitting}>
             {submitting && <span className="spinner-border spinner-border-sm me-2" aria-hidden="true" />}
             <i className={`bi ${isEditing ? 'bi-check2-circle' : 'bi-plus-circle'} me-1`} aria-hidden="true" />

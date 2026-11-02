@@ -5,6 +5,8 @@ export const CATEGORIES = [
   'Audio',
   'Almacenamiento',
   'Componentes',
+  'Refrigeración',
+  'Redes',
   'Accesorios',
 ]
 
