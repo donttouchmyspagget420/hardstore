@@ -1,7 +1,8 @@
-import { ORDER_STATUSES } from '../data/shop'
+import { useStore } from '../context/store-context'
 
 function OrderStatusBadge({ status, className = '' }) {
-  const config = ORDER_STATUSES[status] || {
+  const { settings } = useStore()
+  const config = settings?.orderStatuses?.[status] || {
     tone: 'secondary',
     icon: 'bi-circle',
   }

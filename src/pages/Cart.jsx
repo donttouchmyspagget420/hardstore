@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/auth-context'
 import { useCart } from '../context/cart-context'
-import { SHIPPING } from '../data/shop'
-import { DEFAULT_IMAGE } from '../data/categories'
+import { useStore } from '../context/store-context'
+import { DEFAULT_IMAGE } from '../utils/constants'
 import { formatCurrency } from '../utils/format'
 import QuantityControl from '../components/QuantityControl'
 import EmptyState from '../components/EmptyState'
@@ -11,6 +11,8 @@ function Cart() {
   const { items, updateQuantity, removeItem, subtotal, shipping, total, missingForFreeShipping } =
     useCart()
   const { isAuthenticated } = useAuth()
+  const { settings } = useStore()
+  const freeThreshold = Number(settings?.shipping?.freeThreshold) || 0
 
   const handleImageError = (event) => {
     event.currentTarget.onerror = null
@@ -146,15 +148,15 @@ function Cart() {
                   <strong>{shipping === 0 ? 'Gratis' : formatCurrency(shipping)}</strong>
                 </div>
 
-                {shipping > 0 && (
+                {shipping > 0 && freeThreshold > 0 && (
                   <div className="shipping-progress mt-3">
                     <p className="small text-secondary mb-1">
                       Agregá {formatCurrency(missingForFreeShipping)} más para obtener envío gratis.
                     </p>
-                    <div className="progress" role="progressbar" aria-label="Progreso hacia el envío gratis" aria-valuenow={Math.round((subtotal / SHIPPING.freeThreshold) * 100)} aria-valuemin="0" aria-valuemax="100">
+                    <div className="progress" role="progressbar" aria-label="Progreso hacia el envío gratis" aria-valuenow={Math.round((subtotal / freeThreshold) * 100)} aria-valuemin="0" aria-valuemax="100">
                       <div
                         className="progress-bar"
-                        style={{ width: `${Math.min(100, (subtotal / SHIPPING.freeThreshold) * 100)}%` }}
+                        style={{ width: `${Math.min(100, (subtotal / freeThreshold) * 100)}%` }}
                       />
                     </div>
                   </div>

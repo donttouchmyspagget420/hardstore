@@ -9,12 +9,14 @@ import ConfirmModal from '../components/ConfirmModal'
 import { useProducts } from '../hooks/useProducts'
 import { useAuth } from '../context/auth-context'
 import { useToast } from '../context/toast-context'
+import { useStore } from '../context/store-context'
 import { productApi } from '../services/api'
-import { DEFAULT_IMAGE } from '../data/categories'
+import { DEFAULT_IMAGE } from '../utils/constants'
 import { formatCurrency, formatNumber, getStockState } from '../utils/format'
 
 function Admin() {
   const { products, loading, error, refetch } = useProducts()
+  const { categories } = useStore()
   const { user } = useAuth()
   const { showToast } = useToast()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -208,6 +210,7 @@ function Admin() {
               <ProductForm
                 key={editingProduct ? `edit-${editingProduct.id}` : `new-${formVersion}`}
                 initialValues={editingProduct}
+                categories={categories}
                 submitting={saving}
                 onSubmit={handleSubmit}
                 onCancel={editingProduct ? closeEditor : undefined}

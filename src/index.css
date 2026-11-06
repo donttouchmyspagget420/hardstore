@@ -329,48 +329,6 @@ p {
   text-transform: uppercase;
 }
 
-.hero-card-note {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 1rem;
-  padding: 0.9rem 1rem;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  border-radius: 0.9rem;
-  background: rgba(16, 185, 129, 0.11);
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.82rem;
-}
-
-.hero-card-note i {
-  color: #34d399;
-  font-size: 1.2rem;
-  line-height: 1.2;
-}
-
-.hero-card-note strong {
-  display: block;
-  color: #d1fae5;
-  font-size: 0.84rem;
-}
-
-.hero-card-note span {
-  display: block;
-  margin-top: 0.1rem;
-}
-
-.hero-card-note-error {
-  border-color: rgba(248, 113, 113, 0.35);
-  background: rgba(248, 113, 113, 0.1);
-}
-
-.hero-card-note-error i {
-  color: #fca5a5;
-}
-
-.hero-card-note-error strong {
-  color: #fecaca;
-}
-
 /* ------------------------------------------------------------
    Features
    ------------------------------------------------------------ */
@@ -932,33 +890,6 @@ p {
 
 .login-features i {
   color: #34d399;
-}
-
-.login-demo-title {
-  font-size: 0.68rem;
-  letter-spacing: 0.13em;
-}
-
-.demo-account {
-  margin-top: 0.5rem;
-  padding: 0.65rem 0.8rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.demo-account code {
-  padding: 0;
-  background: transparent;
-  color: #fdba74;
-  font-size: 0.7rem;
-}
-
-.demo-password {
-  display: block;
-  margin-top: 0.2rem;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.7rem;
 }
 
 /* ------------------------------------------------------------

@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
 import { AuthContext } from './auth-context'
-import { USERS } from '../data/users'
+import { userApi } from '../services/api'
 
 const STORAGE_KEY = 'hardstore_session'
 
@@ -29,28 +29,39 @@ function readStoredUser() {
 function AuthProvider({ children }) {
   const [user, setUser] = useState(readStoredUser)
 
-  const login = useCallback((email, password) => {
+  const login = useCallback(async (email, password) => {
     const normalizedEmail = email.trim().toLowerCase()
-    const found = USERS.find(
-      (candidate) =>
-        candidate.email.toLowerCase() === normalizedEmail && candidate.password === password,
-    )
 
-    if (!found) {
-      return { ok: false, error: 'Correo electrónico o contraseña incorrectos.' }
+    try {
+      const matches = await userApi.getByEmail(normalizedEmail)
+      const found = Array.isArray(matches)
+        ? matches.find(
+            (candidate) =>
+              candidate.email.toLowerCase() === normalizedEmail && candidate.password === password,
+          )
+        : null
+
+      if (!found) {
+        return { ok: false, error: 'Correo electrónico o contraseña incorrectos.' }
+      }
+
+      const sessionUser = {
+        id: found.id,
+        name: found.name,
+        email: found.email,
+        role: found.role,
+      }
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(sessionUser))
+      setUser(sessionUser)
+
+      return { ok: true, user: sessionUser }
+    } catch (requestError) {
+      return {
+        ok: false,
+        error: requestError.message || 'No se pudo conectar con el servidor de usuarios.',
+      }
     }
-
-    const sessionUser = {
-      id: found.id,
-      name: found.name,
-      email: found.email,
-      role: found.role,
-    }
-
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(sessionUser))
-    setUser(sessionUser)
-
-    return { ok: true, user: sessionUser }
   }, [])
 
   const logout = useCallback(() => {

@@ -1,5 +1,3 @@
-import { SHIPPING } from '../data/shop'
-
 export function roundCurrency(value) {
   return Math.round((Number(value) + Number.EPSILON) * 100) / 100
 }
@@ -10,19 +8,28 @@ export function calculateSubtotal(items = []) {
   )
 }
 
-export function calculateShipping(subtotal) {
+export function calculateShipping(subtotal, shipping = {}) {
   const amount = Number(subtotal) || 0
   if (amount <= 0) return 0
-  return amount >= SHIPPING.freeThreshold ? 0 : SHIPPING.cost
+
+  const freeThreshold = Number(shipping.freeThreshold)
+  const cost = Number(shipping.cost)
+
+  if (!Number.isFinite(freeThreshold) || !Number.isFinite(cost)) return 0
+  return amount >= freeThreshold ? 0 : cost
 }
 
-export function calculateTotals(items = []) {
+export function calculateTotals(items = [], shippingConfig = {}) {
   const subtotal = calculateSubtotal(items)
-  const shipping = calculateShipping(subtotal)
+  const shipping = calculateShipping(subtotal, shippingConfig)
+  const freeThreshold = Number(shippingConfig.freeThreshold)
+
   return {
     subtotal,
     shipping,
     total: roundCurrency(subtotal + shipping),
-    missingForFreeShipping: roundCurrency(Math.max(0, SHIPPING.freeThreshold - subtotal)),
+    missingForFreeShipping: Number.isFinite(freeThreshold)
+      ? roundCurrency(Math.max(0, freeThreshold - subtotal))
+      : 0,
   }
 }

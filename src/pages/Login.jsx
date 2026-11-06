@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/auth-context'
 import { useToast } from '../context/toast-context'
-import { DEMO_ACCOUNTS } from '../data/users'
 
 function Login() {
   const { login, logout, isAuthenticated, user, isAdmin } = useAuth()
@@ -21,7 +20,7 @@ function Login() {
     ? `${from.pathname}${from.search || ''}`
     : null
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     setError('')
 
@@ -31,7 +30,7 @@ function Login() {
     }
 
     setSubmitting(true)
-    const result = login(email, password)
+    const result = await login(email, password)
     setSubmitting(false)
 
     if (!result.ok) {
@@ -44,12 +43,6 @@ function Login() {
     const destination =
       requestedPath || (result.user.role === 'admin' ? '/admin' : '/perfil')
     navigate(destination, { replace: true })
-  }
-
-  const fillDemoAccount = (account) => {
-    setEmail(account.email)
-    setPassword(account.password)
-    setError('')
   }
 
   const handleLogout = () => {
@@ -136,22 +129,11 @@ function Login() {
                     <li><i className="bi bi-check-circle-fill" aria-hidden="true" /> CRUD completo y rutas protegidas por rol</li>
                   </ul>
 
-                  <div className="small text-white-50">
-                    <span className="d-block text-uppercase fw-bold mb-2 login-demo-title">
-                      Cuentas de prueba
-                    </span>
-                    {DEMO_ACCOUNTS.map((account) => (
-                      <div className="demo-account" key={account.email}>
-                        <div className="d-flex align-items-center justify-content-between gap-2">
-                          <span className={`badge ${account.role === 'admin' ? 'text-bg-warning' : 'text-bg-secondary'}`}>
-                            {account.role === 'admin' ? 'Admin' : 'Usuario'}
-                          </span>
-                          <code>{account.email}</code>
-                        </div>
-                        <span className="demo-password">Contraseña: {account.password}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <p className="small text-white-50 mb-0">
+                    <i className="bi bi-info-circle me-1" aria-hidden="true" />
+                    Autenticación simulada con usuarios de prueba. Las credenciales están
+                    documentadas en el README del proyecto.
+                  </p>
                 </div>
 
                 <div className="col-lg-7">
@@ -230,30 +212,6 @@ function Login() {
                         <i className="bi bi-box-arrow-in-right ms-2" aria-hidden="true" />
                       </button>
                     </form>
-
-                    <div className="d-flex align-items-center gap-3 my-4">
-                      <hr className="flex-grow-1 m-0" />
-                      <span className="small text-secondary text-nowrap">Completar credenciales demo</span>
-                      <hr className="flex-grow-1 m-0" />
-                    </div>
-
-                    <div className="d-grid gap-2">
-                      {DEMO_ACCOUNTS.map((account) => (
-                        <button
-                          key={account.email}
-                          type="button"
-                          className="btn btn-outline-secondary d-flex align-items-center gap-2 text-start"
-                          onClick={() => fillDemoAccount(account)}
-                        >
-                          <i className="bi bi-person-badge" aria-hidden="true" />
-                          <span className="small">
-                            <strong className="d-block">{account.label}</strong>
-                            {account.email}
-                          </span>
-                          <i className="bi bi-arrow-right ms-auto" aria-hidden="true" />
-                        </button>
-                      ))}
-                    </div>
 
                     <p className="small text-secondary mt-4 mb-0">
                       <i className="bi bi-info-circle me-1" aria-hidden="true" />

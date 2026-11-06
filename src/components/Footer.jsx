@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom'
+import { useStore } from '../context/store-context'
 
 const CURRENT_YEAR = new Date().getFullYear()
 
 function Footer() {
+  const { categories } = useStore()
+  const footerCategories = categories.slice(0, 3)
+
   return (
     <footer className="footer mt-auto">
       <div className="container py-5">
@@ -48,9 +52,17 @@ function Footer() {
           <div className="col-6 col-lg-2">
             <h2 className="footer-heading">Categorías</h2>
             <ul className="footer-links">
-              <li><Link to="/productos">Computación</Link></li>
-              <li><Link to="/productos">Componentes</Link></li>
-              <li><Link to="/productos">Periféricos</Link></li>
+              {footerCategories.length > 0 ? (
+                footerCategories.map((category) => (
+                  <li key={category.id}>
+                    <Link to={`/productos?categoria=${encodeURIComponent(category.name)}`}>
+                      {category.name}
+                    </Link>
+                  </li>
+                ))
+              ) : (
+                <li><Link to="/productos">Catálogo</Link></li>
+              )}
             </ul>
           </div>
 

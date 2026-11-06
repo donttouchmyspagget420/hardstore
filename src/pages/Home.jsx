@@ -4,6 +4,7 @@ import ProductCard from '../components/ProductCard'
 import Loader from '../components/Loader'
 import ErrorMessage from '../components/ErrorMessage'
 import { useProducts } from '../hooks/useProducts'
+import { useStore } from '../context/store-context'
 import { formatNumber } from '../utils/format'
 
 const FEATURES = [
@@ -29,51 +30,9 @@ const FEATURES = [
   },
 ]
 
-const CATEGORY_SHOWCASE = [
-  {
-    name: 'Computación',
-    icon: 'bi-laptop',
-    text: 'Notebooks y equipos listos para trabajar y jugar.',
-  },
-  {
-    name: 'Componentes',
-    icon: 'bi-cpu',
-    text: 'Potenciá tu PC con hardware de alto rendimiento.',
-  },
-  {
-    name: 'Periféricos',
-    icon: 'bi-keyboard',
-    text: 'Teclados, mouse y accesorios para tu escritorio.',
-  },
-  {
-    name: 'Audio',
-    icon: 'bi-headphones',
-    text: 'Sonido profesional para gaming, música y streaming.',
-  },
-  {
-    name: 'Monitores',
-    icon: 'bi-display',
-    text: 'Pantallas nítidas para trabajar, crear y jugar.',
-  },
-  {
-    name: 'Almacenamiento',
-    icon: 'bi-device-hdd',
-    text: 'SSD y soluciones rápidas para guardar tus datos.',
-  },
-  {
-    name: 'Refrigeración',
-    icon: 'bi-fan',
-    text: 'Mantené tu equipo fresco y silencioso.',
-  },
-  {
-    name: 'Redes',
-    icon: 'bi-router',
-    text: 'Conectividad estable para toda la casa u oficina.',
-  },
-]
-
 function Home() {
   const { products, loading, error, refetch } = useProducts()
+  const { categories, loading: categoriesLoading } = useStore()
 
   const featured = useMemo(() => {
     const highlighted = products.filter((product) => product.featured)
@@ -162,17 +121,6 @@ function Home() {
                   </div>
                 </div>
 
-                <div className={`hero-card-note${error ? ' hero-card-note-error' : ''}`}>
-                  <i className={`bi ${error ? 'bi-database-x' : 'bi-database-check'}`} aria-hidden="true" />
-                  <div>
-                    <strong>{error ? 'Backend sin conexión' : 'JSON Server conectado'}</strong>
-                    <span>
-                      {error
-                        ? 'Iniciá el backend con "npm run server" para ver el catálogo.'
-                        : 'Los datos se consultan en tiempo real desde el backend provisional.'}
-                    </span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -247,26 +195,30 @@ function Home() {
             </div>
           </div>
 
-          <div className="row g-4">
-            {CATEGORY_SHOWCASE.map((category) => (
-              <div className="col-sm-6 col-xl-3" key={category.name}>
-                <Link
-                  className="category-card"
-                  to={`/productos?categoria=${encodeURIComponent(category.name)}`}
-                >
-                  <span className="category-card-icon">
-                    <i className={`bi ${category.icon}`} aria-hidden="true" />
-                  </span>
-                  <h3 className="h5 mt-3 mb-2">{category.name}</h3>
-                  <p className="small text-secondary mb-3">{category.text}</p>
-                  <span className="category-card-link">
-                    Ver productos
-                    <i className="bi bi-arrow-right ms-1" aria-hidden="true" />
-                  </span>
-                </Link>
-              </div>
-            ))}
-          </div>
+          {categoriesLoading ? (
+            <Loader compact label="Cargando categorías..." />
+          ) : (
+            <div className="row g-4">
+              {categories.map((category) => (
+                <div className="col-sm-6 col-xl-3" key={category.id}>
+                  <Link
+                    className="category-card"
+                    to={`/productos?categoria=${encodeURIComponent(category.name)}`}
+                  >
+                    <span className="category-card-icon">
+                      <i className={`bi ${category.icon}`} aria-hidden="true" />
+                    </span>
+                    <h3 className="h5 mt-3 mb-2">{category.name}</h3>
+                    <p className="small text-secondary mb-3">{category.text}</p>
+                    <span className="category-card-link">
+                      Ver productos
+                      <i className="bi bi-arrow-right ms-1" aria-hidden="true" />
+                    </span>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

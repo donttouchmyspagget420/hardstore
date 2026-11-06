@@ -6,10 +6,11 @@ import Loader from '../components/Loader'
 import ErrorMessage from '../components/ErrorMessage'
 import EmptyState from '../components/EmptyState'
 import { useProducts } from '../hooks/useProducts'
-import { CATEGORIES } from '../data/categories'
+import { useStore } from '../context/store-context'
 
 function Products() {
   const { products, loading, error, refetch } = useProducts()
+  const { categories } = useStore()
   const [searchParams, setSearchParams] = useSearchParams()
   const category = searchParams.get('categoria') || ''
 
@@ -105,9 +106,9 @@ function Products() {
                 onChange={(event) => handleCategoryChange(event.target.value)}
               >
                 <option value="">Todas las categorías</option>
-                {CATEGORIES.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
+                {categories.map((item) => (
+                  <option key={item.id} value={item.name}>
+                    {item.name}
                   </option>
                 ))}
               </select>

@@ -1,5 +1,7 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { CartContext } from './cart-context'
+import { useAuth } from './auth-context'
+import { useStore } from './store-context'
 import { calculateSubtotal, calculateTotals, roundCurrency } from '../utils/cart'
 
 const STORAGE_KEY = 'hardstore_cart'
@@ -43,6 +45,9 @@ function readStoredCart() {
 
 function CartProvider({ children }) {
   const [items, setItems] = useState(readStoredCart)
+  const { user } = useAuth()
+  const { settings } = useStore()
+  const previousUserId = useRef(user?.id ?? null)
 
   useEffect(() => {
     try {
@@ -51,6 +56,17 @@ function CartProvider({ children }) {
       // El carrito seguirá funcionando en memoria si LocalStorage falla.
     }
   }, [items])
+
+  // Vacía el carrito cuando se cierra sesión o se cambia de cuenta.
+  useEffect(() => {
+    const currentUserId = user?.id ?? null
+
+    if (previousUserId.current && previousUserId.current !== currentUserId) {
+      setItems([])
+    }
+
+    previousUserId.current = currentUserId
+  }, [user])
 
   const addItem = useCallback(
     (product, quantity = 1) => {
@@ -120,7 +136,7 @@ function CartProvider({ children }) {
 
   const clearCart = useCallback(() => setItems([]), [])
 
-  const totals = useMemo(() => calculateTotals(items), [items])
+  const totals = useMemo(() => calculateTotals(items, settings?.shipping), [items, settings])
   const itemCount = useMemo(
     () => items.reduce((sum, item) => sum + Number(item.quantity || 0), 0),
     [items],

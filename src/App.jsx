@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import ThemeProvider from './context/ThemeContext'
+import StoreProvider from './context/StoreContext'
 import AuthProvider from './context/AuthContext'
 import CartProvider from './context/CartContext'
 import ToastProvider from './context/ToastContext'
@@ -21,31 +22,33 @@ function App() {
   return (
     <BrowserRouter>
       <ThemeProvider>
-        <AuthProvider>
-          <CartProvider>
-            <ToastProvider>
-              <Routes>
-                <Route element={<Layout />}>
-                  <Route index element={<Home />} />
-                  <Route path="productos" element={<Products />} />
-                  <Route path="productos/:id" element={<ProductDetail />} />
-                  <Route path="carrito" element={<Cart />} />
-                  <Route path="login" element={<Login />} />
-                  <Route element={<ProtectedRoute />}>
-                    <Route path="checkout" element={<Checkout />} />
-                    <Route path="perfil" element={<Profile />} />
-                    <Route path="perfil/pedidos/:id" element={<OrderDetail />} />
+        <StoreProvider>
+          <AuthProvider>
+            <CartProvider>
+              <ToastProvider>
+                <Routes>
+                  <Route element={<Layout />}>
+                    <Route index element={<Home />} />
+                    <Route path="productos" element={<Products />} />
+                    <Route path="productos/:id" element={<ProductDetail />} />
+                    <Route path="carrito" element={<Cart />} />
+                    <Route path="login" element={<Login />} />
+                    <Route element={<ProtectedRoute />}>
+                      <Route path="checkout" element={<Checkout />} />
+                      <Route path="perfil" element={<Profile />} />
+                      <Route path="perfil/pedidos/:id" element={<OrderDetail />} />
+                    </Route>
+                    <Route element={<ProtectedRoute role="admin" />}>
+                      <Route path="admin" element={<Admin />} />
+                    </Route>
+                    <Route path="acceso-denegado" element={<AccessDenied />} />
+                    <Route path="*" element={<NotFound />} />
                   </Route>
-                  <Route element={<ProtectedRoute role="admin" />}>
-                    <Route path="admin" element={<Admin />} />
-                  </Route>
-                  <Route path="acceso-denegado" element={<AccessDenied />} />
-                  <Route path="*" element={<NotFound />} />
-                </Route>
-              </Routes>
-            </ToastProvider>
-          </CartProvider>
-        </AuthProvider>
+                </Routes>
+              </ToastProvider>
+            </CartProvider>
+          </AuthProvider>
+        </StoreProvider>
       </ThemeProvider>
     </BrowserRouter>
   )

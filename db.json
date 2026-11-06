@@ -524,6 +524,212 @@
       }
     }
   ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Computación",
+      "icon": "bi-laptop",
+      "text": "Notebooks y equipos listos para trabajar y jugar."
+    },
+    {
+      "id": 2,
+      "name": "Periféricos",
+      "icon": "bi-keyboard",
+      "text": "Teclados, mouse y accesorios para tu escritorio."
+    },
+    {
+      "id": 3,
+      "name": "Monitores",
+      "icon": "bi-display",
+      "text": "Pantallas nítidas para trabajar, crear y jugar."
+    },
+    {
+      "id": 4,
+      "name": "Audio",
+      "icon": "bi-headphones",
+      "text": "Sonido profesional para gaming, música y streaming."
+    },
+    {
+      "id": 5,
+      "name": "Almacenamiento",
+      "icon": "bi-device-hdd",
+      "text": "SSD y soluciones rápidas para guardar tus datos."
+    },
+    {
+      "id": 6,
+      "name": "Componentes",
+      "icon": "bi-cpu",
+      "text": "Potenciá tu PC con hardware de alto rendimiento."
+    },
+    {
+      "id": 7,
+      "name": "Refrigeración",
+      "icon": "bi-fan",
+      "text": "Mantené tu equipo fresco y silencioso."
+    },
+    {
+      "id": 8,
+      "name": "Redes",
+      "icon": "bi-router",
+      "text": "Conectividad estable para toda la casa u oficina."
+    },
+    {
+      "id": 9,
+      "name": "Accesorios",
+      "icon": "bi-bag",
+      "text": "Sumá los detalles que completan tu setup."
+    }
+  ],
+  "users": [
+    {
+      "id": "u-admin",
+      "name": "Ana Administradora",
+      "email": "admin@hardstore.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": "u-cliente",
+      "name": "Carlos Cliente",
+      "email": "user@hardstore.com",
+      "password": "user123",
+      "role": "user"
+    }
+  ],
+  "settings": [
+    {
+      "id": 1,
+      "shipping": {
+        "freeThreshold": 300,
+        "cost": 19.99
+      },
+      "paymentMethods": [
+        {
+          "id": "credit",
+          "label": "Tarjeta de crédito",
+          "shortLabel": "Crédito",
+          "icon": "bi-credit-card-2-front",
+          "description": "Visa, Mastercard y American Express. Hasta 12 cuotas.",
+          "requiresCard": true,
+          "allowsInstallments": true
+        },
+        {
+          "id": "debit",
+          "label": "Tarjeta de débito",
+          "shortLabel": "Débito",
+          "icon": "bi-credit-card",
+          "description": "El pago se debita al confirmar la compra.",
+          "requiresCard": true,
+          "allowsInstallments": false
+        },
+        {
+          "id": "transfer",
+          "label": "Transferencia bancaria",
+          "shortLabel": "Transferencia",
+          "icon": "bi-bank",
+          "description": "Transferí al alias HARDSTORE.AR y acreditamos el pago.",
+          "requiresCard": false,
+          "allowsInstallments": false
+        },
+        {
+          "id": "cash",
+          "label": "Efectivo al retirar",
+          "shortLabel": "Efectivo",
+          "icon": "bi-cash-coin",
+          "description": "Reservá tu pedido y pagalo cuando lo retires en el local.",
+          "requiresCard": false,
+          "allowsInstallments": false
+        }
+      ],
+      "cardBrands": [
+        {
+          "id": "visa",
+          "label": "Visa",
+          "prefixes": [
+            "4"
+          ]
+        },
+        {
+          "id": "mastercard",
+          "label": "Mastercard",
+          "prefixes": [
+            "51",
+            "52",
+            "53",
+            "54",
+            "55"
+          ]
+        },
+        {
+          "id": "amex",
+          "label": "American Express",
+          "prefixes": [
+            "34",
+            "37"
+          ]
+        }
+      ],
+      "orderStatusFlow": [
+        "Confirmado",
+        "Preparando",
+        "Enviado",
+        "Entregado"
+      ],
+      "orderStatuses": {
+        "Confirmado": {
+          "tone": "info",
+          "icon": "bi-check2-circle",
+          "description": "Recibimos tu pedido y ya está en preparación."
+        },
+        "Preparando": {
+          "tone": "warning",
+          "icon": "bi-box-seam",
+          "description": "Estamos armando el paquete con tus productos."
+        },
+        "Enviado": {
+          "tone": "primary",
+          "icon": "bi-truck",
+          "description": "El pedido salió del depósito y está en camino."
+        },
+        "Entregado": {
+          "tone": "success",
+          "icon": "bi-check-circle",
+          "description": "El pedido se entregó correctamente."
+        },
+        "Cancelado": {
+          "tone": "danger",
+          "icon": "bi-x-circle",
+          "description": "El pedido fue cancelado."
+        }
+      },
+      "provinces": [
+        "Buenos Aires",
+        "Ciudad Autónoma de Buenos Aires",
+        "Catamarca",
+        "Chaco",
+        "Chubut",
+        "Córdoba",
+        "Corrientes",
+        "Entre Ríos",
+        "Formosa",
+        "Jujuy",
+        "La Pampa",
+        "La Rioja",
+        "Mendoza",
+        "Misiones",
+        "Neuquén",
+        "Río Negro",
+        "Salta",
+        "San Juan",
+        "San Luis",
+        "Santa Cruz",
+        "Santa Fe",
+        "Santiago del Estero",
+        "Tierra del Fuego",
+        "Tucumán"
+      ]
+    }
+  ],
   "reviews": [
     {
       "id": 1,
@@ -544,22 +750,6 @@
       "dislikedBy": []
     },
     {
-      "id": 2,
-      "productId": 1,
-      "productName": "Notebook Gamer Nova 15",
-      "userId": "u-cliente",
-      "userName": "Carlos Cliente",
-      "rating": 4,
-      "comment": "Muy buena relación precio-rendimiento. El teclado podría tener más recorrido, pero el resto es impecable.",
-      "createdAt": "2026-10-27T09:05:00.000Z",
-      "likes": 1,
-      "dislikes": 0,
-      "likedBy": [
-        "u-maria"
-      ],
-      "dislikedBy": []
-    },
-    {
       "id": 3,
       "productId": 2,
       "productName": "Mouse Inalámbrico Pulse",
@@ -571,24 +761,8 @@
       "likes": 2,
       "dislikes": 0,
       "likedBy": [
-        "u-cliente",
-        "u-sofia"
-      ],
-      "dislikedBy": []
-    },
-    {
-      "id": 4,
-      "productId": 3,
-      "productName": "Teclado Mecánico K68 RGB",
-      "userId": "u-cliente",
-      "userName": "Carlos Cliente",
-      "rating": 5,
-      "comment": "El formato 65% es ideal para mi escritorio. Los switches lineales son suaves y el RGB se ve espectacular.",
-      "createdAt": "2026-10-30T11:15:00.000Z",
-      "likes": 1,
-      "dislikes": 0,
-      "likedBy": [
-        "u-javier"
+        "u-sofia",
+        "u-cliente"
       ],
       "dislikedBy": []
     },
@@ -638,24 +812,6 @@
       "dislikes": 0,
       "likedBy": [
         "u-cliente"
-      ],
-      "dislikedBy": []
-    },
-    {
-      "id": 8,
-      "productId": 7,
-      "productName": "SSD NVMe 1TB Velocity",
-      "userId": "u-cliente",
-      "userName": "Carlos Cliente",
-      "rating": 5,
-      "comment": "Instalarlo fue muy simple y la diferencia de velocidad es enorme. La notebook arranca en segundos.",
-      "createdAt": "2026-10-24T13:25:00.000Z",
-      "likes": 3,
-      "dislikes": 0,
-      "likedBy": [
-        "u-maria",
-        "u-javier",
-        "u-sofia"
       ],
       "dislikedBy": []
     },

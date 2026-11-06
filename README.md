@@ -36,9 +36,10 @@ npm run dev      # Vite en http://localhost:5173
 | Usuario | `user@hardstore.com` | `user123` | Comprar, opinar y consultar su historial |
 | Visitante | — | — | Catálogo, detalle, carrito y acceso al login |
 
-La autenticación es **simulada** con fines académicos. En LocalStorage solo se guardan `id`,
-`name`, `email` y `role` del usuario; **nunca la contraseña**. El carrito y la preferencia de tema
-también se persisten en LocalStorage.
+La autenticación es **simulada** con fines académicos. Los usuarios de prueba se cargan desde
+`db.json` y el login se valida en el cliente. En LocalStorage solo se guardan `id`, `name`, `email`
+y `role` del usuario; **nunca la contraseña**. El carrito y la preferencia de tema también se
+persisten en LocalStorage.
 
 ---
 
@@ -86,7 +87,7 @@ también se persisten en LocalStorage.
   página 403.
 - Persistencia de sesión en LocalStorage y limpieza al cerrar sesión.
 
-### Ampliaciones solicitadas en `todo`
+### Ampliaciones adicionales
 
 - **Comentarios, likes y dislikes**: cada producto tiene reseñas con calificación de 1 a 5,
   promedio, distribución de estrellas, comentario, votos positivos/negativos y borrado para el autor
@@ -96,16 +97,14 @@ también se persisten en LocalStorage.
   transferencia o efectivo. Solo se guardan la marca y los últimos 4 dígitos de la tarjeta.
 - **Fotos reales**: los 18 productos usan fotografías remotas de Unsplash. Si una imagen no carga,
   se muestra `/images/placeholder.svg` como respaldo.
-- **Base de datos ampliada**: `db.json` incluye `products` (18), `reviews` (13) y `orders` (4), con
-  campos ampliados en cada producto.
+- **Base de datos ampliada**: `db.json` incluye `products` (18), `categories` (9), `users` (2),
+  `settings` (1), `reviews` (9) y `orders` (5), con campos ampliados en cada producto.
 - **Perfil con historial y dashboard**: pedidos con estado, detalle de cada compra, total invertido,
   ticket promedio, productos comprados, categoría favorita, consumo por categoría y reseñas propias.
 - **Modo claro/oscuro**: contexto de tema, persistencia en LocalStorage, detección de preferencia del
   sistema y botón en la barra de navegación.
 - **Descripciones ampliadas**: descripción larga, puntos destacados y ficha técnica visible en el
   detalle de cada producto.
-
-> El mapeo completo contra la consigna está en [`docs/CHECKLIST.md`](docs/CHECKLIST.md).
 
 ---
 
@@ -156,7 +155,8 @@ curl -X PATCH http://localhost:3001/products/19 \
 curl -X DELETE http://localhost:3001/products/19
 ```
 
-Los endpoints de reseñas y pedidos también están disponibles en `/reviews` y `/orders`.
+Los recursos de categorías, usuarios, configuración, reseñas y pedidos también están disponibles en
+`/categories`, `/users`, `/settings`, `/reviews` y `/orders`.
 
 ---
 
@@ -178,10 +178,9 @@ Los endpoints de reseñas y pedidos también están disponibles en `/reviews` y 
 
 ```text
 hardstore/
-├── db.json                     # Productos, reseñas y pedidos
+├── db.json                     # Productos, categorías, usuarios, configuración, reseñas y pedidos
 ├── docs/
-│   ├── ACT4AV - TP2.pdf        # Consigna del trabajo
-│   └── CHECKLIST.md            # Mapeo requisito → implementación
+│   └── ACT4AV - TP2.pdf        # Consigna del trabajo
 ├── public/
 │   ├── images/                 # Imágenes SVG de respaldo
 │   └── favicon.svg
@@ -209,14 +208,12 @@ hardstore/
 │   │   ├── auth-context.js     # Contexto + useAuth
 │   │   ├── CartContext.jsx     # Carrito persistente
 │   │   ├── cart-context.js     # Contexto + useCart
+│   │   ├── StoreContext.jsx    # Categorías y configuración desde la API
+│   │   ├── store-context.js    # Contexto + useStore
 │   │   ├── ThemeContext.jsx    # Tema claro/oscuro
 │   │   ├── theme-context.js    # Contexto + useTheme
 │   │   ├── ToastContext.jsx    # Provider de notificaciones
 │   │   └── toast-context.js    # Contexto + useToast
-│   ├── data/
-│   │   ├── categories.js
-│   │   ├── shop.js             # Envío, pagos, estados y provincias
-│   │   └── users.js            # Usuarios simulados
 │   ├── hooks/
 │   │   ├── useOrders.js        # useOrders + useOrder
 │   │   ├── useProducts.js      # useProducts + useProduct
@@ -237,7 +234,9 @@ hardstore/
 │   │   └── api.js              # Cliente fetch de JSON Server
 │   ├── utils/
 │   │   ├── cart.js             # Subtotal, envío y totales
-│   │   └── format.js           # Moneda, fechas, iniciales y stock
+│   │   ├── constants.js        # Imagen de respaldo
+│   │   ├── format.js           # Moneda, fechas, iniciales y stock
+│   │   └── shop.js             # Marcas de tarjeta y métodos de pago
 │   ├── App.jsx                 # Providers y rutas
 │   ├── index.css               # Tema Bootstrap claro/oscuro
 │   └── main.jsx
@@ -275,13 +274,17 @@ El cliente HTTP está en `src/services/api.js` y contempla:
 - Error de conexión con un mensaje que recuerda ejecutar `npm run server`.
 - Respuestas 404 (recurso inexistente).
 - Otros errores HTTP.
-- Endpoints para `products`, `reviews` y `orders`.
+- Endpoints para `products`, `categories`, `users`, `settings`, `reviews` y `orders`.
 
 ## Datos y pagos simulados
 
 - `products`: 18 productos con datos comerciales y técnicos.
-- `reviews`: 13 reseñas iniciales con calificación, comentario y votos.
-- `orders`: 4 pedidos iniciales con distintos estados y medios de pago.
+- `categories`: 9 categorías con nombre, ícono y texto descriptivo.
+- `users`: 2 usuarios simulados para iniciar sesión (`admin` y `user`).
+- `settings`: configuración de envío, métodos de pago, marcas de tarjeta, estados de pedido y
+  provincias.
+- `reviews`: 9 reseñas iniciales con calificación, comentario y votos.
+- `orders`: 5 pedidos iniciales con distintos estados y medios de pago.
 - El checkout simula la pasarela de pago y **no procesa dinero real**.
 - Nunca se persiste el número completo de tarjeta ni el CVV; solo se guarda una etiqueta como
   `Visa •••• 4242 · 3 cuotas`.

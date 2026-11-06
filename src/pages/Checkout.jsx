@@ -2,17 +2,15 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/auth-context'
 import { useCart } from '../context/cart-context'
+import { useStore } from '../context/store-context'
 import { useToast } from '../context/toast-context'
 import { orderApi, productApi } from '../services/api'
-import {
-  PAYMENT_METHODS,
-  PROVINCES,
-  detectCardBrand,
-  getPaymentMethod,
-} from '../data/shop'
-import { DEFAULT_IMAGE } from '../data/categories'
+import { detectCardBrand, getPaymentMethod } from '../utils/shop'
+import { DEFAULT_IMAGE } from '../utils/constants'
 import { formatCurrency } from '../utils/format'
 import EmptyState from '../components/EmptyState'
+import Loader from '../components/Loader'
+import ErrorMessage from '../components/ErrorMessage'
 
 function formatCardNumber(value) {
   const digits = value.replace(/\D/g, '').slice(0, 19)
@@ -37,6 +35,11 @@ function isValidExpiry(value) {
 
 function validate(address, payment, method) {
   const errors = {}
+
+  if (!method) {
+    errors.method = 'Seleccioná un método de pago.'
+    return errors
+  }
 
   if (address.fullName.trim().length < 3) errors.fullName = 'Ingresá el nombre completo.'
   if (address.address.trim().length < 5) errors.address = 'Ingresá una dirección válida.'
@@ -67,19 +70,25 @@ function validate(address, payment, method) {
 function Checkout() {
   const { user } = useAuth()
   const { items, subtotal, shipping, total, clearCart } = useCart()
+  const { settings, loading: settingsLoading, error: settingsError, refetch: refetchSettings } =
+    useStore()
   const { showToast } = useToast()
   const navigate = useNavigate()
+
+  const paymentMethods = settings?.paymentMethods || []
+  const provinces = settings?.provinces || []
+  const cardBrands = settings?.cardBrands || []
 
   const [address, setAddress] = useState(() => ({
     fullName: user?.name || '',
     address: '',
     city: '',
-    province: 'Buenos Aires',
+    province: '',
     postalCode: '',
     phone: '',
   }))
   const [payment, setPayment] = useState({
-    method: 'credit',
+    method: '',
     cardNumber: '',
     cardName: user?.name || '',
     expiry: '',
@@ -89,9 +98,37 @@ function Checkout() {
   const [errors, setErrors] = useState({})
   const [processing, setProcessing] = useState(false)
 
-  const method = getPaymentMethod(payment.method)
+  const method = getPaymentMethod(paymentMethods, payment.method)
+  const selectedProvince = address.province || provinces[0] || ''
   const cardDigits = payment.cardNumber.replace(/\D/g, '')
-  const cardBrand = detectCardBrand(cardDigits)
+  const cardBrand = detectCardBrand(cardDigits, cardBrands)
+
+  if (settingsLoading) {
+    return (
+      <div className="container py-5">
+        <Loader label="Cargando configuración de pago..." />
+      </div>
+    )
+  }
+
+  if (settingsError) {
+    return (
+      <div className="container py-5">
+        <ErrorMessage message={settingsError} onRetry={refetchSettings} />
+      </div>
+    )
+  }
+
+  if (!method) {
+    return (
+      <div className="container py-5">
+        <ErrorMessage
+          message="No hay métodos de pago configurados. Configurá el recurso settings en db.json."
+          onRetry={refetchSettings}
+        />
+      </div>
+    )
+  }
 
   if (items.length === 0) {
     return (
@@ -141,7 +178,8 @@ function Checkout() {
     event.preventDefault()
     if (processing) return
 
-    const nextErrors = validate(address, payment, method)
+    const effectiveAddress = { ...address, province: selectedProvince }
+    const nextErrors = validate(effectiveAddress, payment, method)
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors)
       showToast('Revisá los datos marcados antes de confirmar el pago.', 'danger', 'Faltan datos')
@@ -161,16 +199,16 @@ function Checkout() {
       let paymentDetail = ''
       let paymentStatus = ''
 
-      if (payment.method === 'credit') {
+      if (method.id === 'credit') {
         const installments = Number(payment.installments) || 1
         paymentDetail = `${cardBrand} •••• ${last4} · ${installments} ${
           installments === 1 ? 'cuota' : 'cuotas'
         }`
         paymentStatus = 'Pago aprobado (simulado)'
-      } else if (payment.method === 'debit') {
+      } else if (method.id === 'debit') {
         paymentDetail = `${cardBrand} •••• ${last4}`
         paymentStatus = 'Pago aprobado (simulado)'
-      } else if (payment.method === 'transfer') {
+      } else if (method.id === 'transfer') {
         paymentDetail = 'Transferencia al alias HARDSTORE.AR'
         paymentStatus = 'Pago a acreditar'
       } else {
@@ -202,7 +240,7 @@ function Checkout() {
           fullName: address.fullName.trim(),
           address: address.address.trim(),
           city: address.city.trim(),
-          province: address.province,
+          province: selectedProvince,
           postalCode: address.postalCode.trim(),
           phone: address.phone.trim(),
         },
@@ -334,11 +372,11 @@ function Checkout() {
                         id="checkout-province"
                         name="province"
                         className={`form-select${errors.province ? ' is-invalid' : ''}`}
-                        value={address.province}
+                        value={selectedProvince}
                         onChange={handleAddressChange}
                         autoComplete="address-level1"
                       >
-                        {PROVINCES.map((province) => (
+                        {provinces.map((province) => (
                           <option key={province} value={province}>
                             {province}
                           </option>
@@ -398,16 +436,16 @@ function Checkout() {
                   </div>
 
                   <div className="payment-options">
-                    {PAYMENT_METHODS.map((option) => (
+                    {paymentMethods.map((option) => (
                       <label
                         key={option.id}
-                        className={`payment-option${payment.method === option.id ? ' is-selected' : ''}`}
+                        className={`payment-option${method?.id === option.id ? ' is-selected' : ''}`}
                       >
                         <input
                           type="radio"
                           name="paymentMethod"
                           value={option.id}
-                          checked={payment.method === option.id}
+                          checked={method?.id === option.id}
                           onChange={() => selectMethod(option.id)}
                         />
                         <span className="payment-option-icon">
@@ -533,7 +571,7 @@ function Checkout() {
                     </div>
                   )}
 
-                  {payment.method === 'transfer' && (
+                  {method?.id === 'transfer' && (
                     <div className="payment-instructions mt-4">
                       <i className="bi bi-bank" aria-hidden="true" />
                       <div>
@@ -547,7 +585,7 @@ function Checkout() {
                     </div>
                   )}
 
-                  {payment.method === 'cash' && (
+                  {method?.id === 'cash' && (
                     <div className="payment-instructions mt-4">
                       <i className="bi bi-geo-alt" aria-hidden="true" />
                       <div>

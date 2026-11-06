@@ -44,6 +44,18 @@ export const productApi = {
   remove: (id) => request(`/products/${encodeURIComponent(id)}`, { method: 'DELETE' }),
 }
 
+export const categoryApi = {
+  getAll: () => request('/categories?_sort=id'),
+}
+
+export const userApi = {
+  getByEmail: (email) => request(`/users?email=${encodeURIComponent(email)}`),
+}
+
+export const settingsApi = {
+  get: () => request('/settings/1'),
+}
+
 export const reviewApi = {
   getAll: () => request('/reviews?_sort=createdAt&_order=desc'),
   getByProduct: (productId) =>

@@ -1,8 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 import { useOrder } from '../hooks/useOrders'
 import { useAuth } from '../context/auth-context'
-import { ORDER_STATUSES, ORDER_STATUS_FLOW } from '../data/shop'
-import { DEFAULT_IMAGE } from '../data/categories'
+import { useStore } from '../context/store-context'
+import { DEFAULT_IMAGE } from '../utils/constants'
 import { formatCurrency, formatDateTime } from '../utils/format'
 import Loader from '../components/Loader'
 import ErrorMessage from '../components/ErrorMessage'
@@ -11,6 +11,9 @@ import OrderStatusBadge from '../components/OrderStatusBadge'
 function OrderDetailView({ id }) {
   const { order, loading, error, refetch } = useOrder(id)
   const { user, isAdmin } = useAuth()
+  const { settings } = useStore()
+  const orderStatuses = settings?.orderStatuses || {}
+  const orderStatusFlow = settings?.orderStatusFlow || []
 
   if (loading) {
     return (
@@ -60,8 +63,8 @@ function OrderDetailView({ id }) {
     )
   }
 
-  const statusConfig = ORDER_STATUSES[order.status]
-  const statusIndex = ORDER_STATUS_FLOW.indexOf(order.status)
+  const statusConfig = orderStatuses[order.status]
+  const statusIndex = orderStatusFlow.indexOf(order.status)
   const isCancelled = order.status === 'Cancelado'
 
   return (
@@ -119,9 +122,11 @@ function OrderDetailView({ id }) {
                     <i className="bi bi-x-circle me-2" aria-hidden="true" />
                     Este pedido fue cancelado. Si tenés dudas, contactanos.
                   </div>
+                ) : orderStatusFlow.length === 0 ? (
+                  <p className="text-secondary mb-0">No hay información de seguimiento disponible.</p>
                 ) : (
                   <ol className="order-timeline">
-                    {ORDER_STATUS_FLOW.map((step, index) => {
+                    {orderStatusFlow.map((step, index) => {
                       const state =
                         index < statusIndex
                           ? 'is-complete'

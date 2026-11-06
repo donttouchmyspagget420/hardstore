@@ -1,13 +1,13 @@
 import { useId, useState } from 'react'
-import { CATEGORIES, DEFAULT_IMAGE } from '../data/categories'
+import { DEFAULT_IMAGE } from '../utils/constants'
 
 const EMPTY_FORM = {
   name: '',
   description: '',
   price: '',
-  category: CATEGORIES[0],
+  category: '',
   stock: '',
-  image: '/images/notebook.svg',
+  image: DEFAULT_IMAGE,
   brand: '',
   sku: '',
   warranty: '12 meses',
@@ -28,14 +28,16 @@ function specsToText(specs) {
     .join('\n')
 }
 
-function toFormValues(product) {
-  if (!product) return { ...EMPTY_FORM }
+function toFormValues(product, categories = []) {
+  const defaultCategory = categories[0]?.name || ''
+
+  if (!product) return { ...EMPTY_FORM, category: defaultCategory }
 
   return {
     name: product.name ?? '',
     description: product.description ?? '',
     price: product.price != null ? String(product.price) : '',
-    category: product.category || CATEGORIES[0],
+    category: product.category || defaultCategory,
     stock: product.stock != null ? String(product.stock) : '',
     image: product.image || DEFAULT_IMAGE,
     brand: product.brand ?? '',
@@ -99,14 +101,21 @@ function validate(values) {
   return errors
 }
 
-function ProductForm({ initialValues = null, submitting = false, onSubmit, onCancel }) {
+function ProductForm({
+  initialValues = null,
+  categories = [],
+  submitting = false,
+  onSubmit,
+  onCancel,
+}) {
   const formId = useId()
-  const [form, setForm] = useState(() => toFormValues(initialValues))
+  const [form, setForm] = useState(() => toFormValues(initialValues, categories))
   const [errors, setErrors] = useState({})
   const [imageFailed, setImageFailed] = useState(false)
 
   const isEditing = Boolean(initialValues)
   const previewSrc = imageFailed ? DEFAULT_IMAGE : form.image.trim() || DEFAULT_IMAGE
+  const selectedCategory = form.category || categories[0]?.name || ''
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target
@@ -119,7 +128,8 @@ function ProductForm({ initialValues = null, submitting = false, onSubmit, onCan
     event.preventDefault()
     if (submitting) return
 
-    const nextErrors = validate(form)
+    const values = { ...form, category: selectedCategory }
+    const nextErrors = validate(values)
 
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors)
@@ -127,10 +137,10 @@ function ProductForm({ initialValues = null, submitting = false, onSubmit, onCan
     }
 
     onSubmit({
-      name: form.name.trim(),
-      description: form.description.trim(),
-      price: Number(form.price),
-      category: form.category,
+      name: values.name.trim(),
+      description: values.description.trim(),
+      price: Number(values.price),
+      category: values.category,
       stock: Number(form.stock),
       image: form.image.trim(),
       brand: form.brand.trim(),
@@ -242,12 +252,12 @@ function ProductForm({ initialValues = null, submitting = false, onSubmit, onCan
             id={`${formId}-category`}
             name="category"
             className={`form-select${errors.category ? ' is-invalid' : ''}`}
-            value={form.category}
+            value={selectedCategory}
             onChange={handleChange}
           >
-            {CATEGORIES.map((category) => (
-              <option key={category} value={category}>
-                {category}
+            {categories.map((category) => (
+              <option key={category.id} value={category.name}>
+                {category.name}
               </option>
             ))}
           </select>

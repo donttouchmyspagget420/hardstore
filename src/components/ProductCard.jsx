@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { DEFAULT_IMAGE } from '../data/categories'
+import { DEFAULT_IMAGE } from '../utils/constants'
 import { useCart } from '../context/cart-context'
 import { useToast } from '../context/toast-context'
 import { formatCurrency, getStockState } from '../utils/format'
